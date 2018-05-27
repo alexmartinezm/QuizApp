@@ -7,16 +7,28 @@
              x:Class="QuizHelp.Views.HomePage"
              Title="{Binding Title}">
 
-
         <carousel:CarouselViewControl ItemsSource="{Binding Questions}"
                                       Orientation="Horizontal"
                                       VerticalOptions="FillAndExpand"
                                       HorizontalOptions="FillAndExpand"
-                                      ShowArrows="true">
+                                      ShowArrows="false">
         
             <carousel:CarouselViewControl.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Title}" />
+                
+                    <StackLayout VerticalOptions="FillAndExpand"
+                                 HorizontalOptions="FillAndExpand">
+                    
+                        <Label Text="{Binding Title}"
+                               FontSize="Large"
+                               TextColor="#4C4C4C"
+                               FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               Margin="5, 40, 5, 40"/>
+                    
+                    </StackLayout>
+                
                 </DataTemplate>
                     <!--<controls:FancySlider Maximum="{Binding MaximumValue}"
                                           Minimum="{Binding MinimumValue}"
