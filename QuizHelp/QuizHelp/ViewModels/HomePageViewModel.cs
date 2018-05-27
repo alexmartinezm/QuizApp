@@ -64,7 +64,7 @@ namespace QuizHelp.ViewModels
 
         private void LoadData()
         {
-            Questions = Quizz.FromJson(StaticJsonData.GetQuestions()).Questions.ToObservableCollection();
+            Questions = Quiz.FromJson(StaticJsonData.GetQuestions()).Questions.ToObservableCollection();
         }
     }
 }

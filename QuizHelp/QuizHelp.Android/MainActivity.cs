@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using CarouselView.FormsPlugin.Android;
 
 namespace QuizHelp.Droid
 {
@@ -15,6 +16,8 @@ namespace QuizHelp.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CarouselViewRenderer.Init();
+
             LoadApplication(new App(new AndroidInitializer()));
         }
     }
