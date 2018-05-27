@@ -39,11 +39,19 @@
                             </Label.FontFamily>
                         </Label>
 
-                        <Slider Maximum="{Binding MaximumValue}"
-                                Minimum="{Binding MinimumValue}"
-                                Value="{Binding SliderValue, Mode=TwoWay}"
-                                VerticalOptions="CenterAndExpand"
-                                Margin="10, 0, 10, 80"/>
+                        <controls:FancySlider Maximum="{Binding MaximumValue}"
+                                              Minimum="{Binding MinimumValue}"
+                                              Value="{Binding SliderValue, Mode=TwoWay}"
+                                              BarHeight="20"
+                                              HeightRequest="60"
+                                              VerticalOptions="StartAndExpand"
+                                              HorizontalOptions="FillAndExpand">
+                            <Slider.Behaviors>
+                                <b:EventToCommandBehavior EventName="ValueChanged"
+                                                          Command="{Binding ValueChangedCommand}"
+                                                          CommandParameter="{Binding Value}"/>
+                            </Slider.Behaviors>
+                        </controls:FancySlider>
                     
                     </StackLayout>
                 
