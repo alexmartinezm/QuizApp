@@ -9,7 +9,6 @@
 
 
         <carousel:CarouselViewControl ItemsSource="{Binding Questions}"
-                                      PositionSelected="Handle_PositionSelected"
                                       Orientation="Horizontal"
                                       VerticalOptions="FillAndExpand"
                                       HorizontalOptions="FillAndExpand"

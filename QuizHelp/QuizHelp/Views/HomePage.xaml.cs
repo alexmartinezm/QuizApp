@@ -8,13 +8,5 @@ namespace QuizHelp.Views
         {
             InitializeComponent();
         }
-
-        void Handle_PositionSelected(object sender, CarouselView.FormsPlugin.Abstractions.PositionSelectedEventArgs e)
-        {
-            if (e.NewValue == 0)
-            {
-
-            }
-        }
     }
 }

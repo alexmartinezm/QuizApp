@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using CarouselView.FormsPlugin.iOS;
+using Foundation;
 using UIKit;
 
 namespace QuizHelp.iOS
@@ -19,6 +20,8 @@ namespace QuizHelp.iOS
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
             Xamarin.Forms.Forms.Init();
+            CarouselViewRenderer.Init();
+
             LoadApplication(new App(new IOSInitializer()));
 
             return base.FinishedLaunching(uiApplication, launchOptions);
