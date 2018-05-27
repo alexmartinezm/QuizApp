@@ -171,4 +171,15 @@
     <Folder Include="Renderers\" />
     <Folder Include="Controls\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fa-brands-400.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fa-regular-400.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fa-solid-900.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </BundleResource>
+  </ItemGroup>
 </Project>

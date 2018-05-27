@@ -2,75 +2,66 @@
   "questions": [
     {
       "title": "¿De qué presupuesto disponéis?",
+      "image": "\uF1F6",
       "answers": [
         {
           "title": "El mínimo posible",
-          "image": "",
           "result": 0
         },
         {
           "title": "Pocos gastos",
-          "image": "",
           "result": 1
         },
         {
           "title": "Gasto medio",
-          "image": "",
           "result": 2
         },
         {
           "title": "Alto",
-          "image": "",
           "result": 3
         }
       ]
     },
     {
       "title": "¿El rendimiento es importante?",
+      "image": "\uF274",
       "answers": [
         {
           "title": "No",
-          "image": "",
           "result": 0
         },
         {
           "title": "Un poco",
-          "image": "",
           "result": 1
         },
         {
           "title": "Sí",
-          "image": "",
           "result": 2
         },
         {
           "title": "Mucho",
-          "image": "",
           "result": 3
         }
       ]
     },
     {
       "title": "¿Cuánto tiempo de desarrollo quieres invertir?",
+      "image": "\uF111",
       "answers": [
         {
           "title": "El mínimo posible",
-          "image": "",
           "result": 0
         },
         {
           "title": "Normal",
-          "image": "",
           "result": 1
         },
         {
           "title": "Indiferente",
-          "image": "",
           "result": 2
         },
         {
           "title": "Mucho",
-          "image": "",
           "result": 3
         }
       ]
