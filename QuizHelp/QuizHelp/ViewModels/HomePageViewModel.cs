@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using QuizHelp.Data;
 using QuizHelp.Extensions;
 using QuizHelp.ViewModels.Base;
 using System.Windows.Input;
 using Xamarin.Forms;
 using QuizHelp.ViewModels.Interfaces;
+using System.Reflection;
+using System.IO;
 
 namespace QuizHelp.ViewModels
 {
@@ -64,7 +65,15 @@ namespace QuizHelp.ViewModels
 
         private void LoadData()
         {
-            Questions = Quiz.FromJson(StaticJsonData.GetQuestions()).Questions.ToObservableCollection();
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            Stream stream = assembly.GetManifestResourceStream("QuizHelp.Data.quiz_data.json");
+            string jsonData = string.Empty;
+            using (var reader = new StreamReader(stream))
+            {
+                jsonData = reader.ReadToEnd();
+            }
+
+            Questions = Quiz.FromJson(jsonData).Questions.ToObservableCollection();
         }
     }
 }

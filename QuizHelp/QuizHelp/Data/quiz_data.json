@@ -24,6 +24,56 @@
           "result": 3
         }
       ]
+    },
+    {
+      "title": "¿El rendimiento es importante?",
+      "answers": [
+        {
+          "title": "No",
+          "image": "",
+          "result": 0
+        },
+        {
+          "title": "Un poco",
+          "image": "",
+          "result": 1
+        },
+        {
+          "title": "Sí",
+          "image": "",
+          "result": 2
+        },
+        {
+          "title": "Mucho",
+          "image": "",
+          "result": 3
+        }
+      ]
+    },
+    {
+      "title": "¿Cuánto tiempo de desarrollo quieres invertir?",
+      "answers": [
+        {
+          "title": "El mínimo posible",
+          "image": "",
+          "result": 0
+        },
+        {
+          "title": "Normal",
+          "image": "",
+          "result": 1
+        },
+        {
+          "title": "Indiferente",
+          "image": "",
+          "result": 2
+        },
+        {
+          "title": "Mucho",
+          "image": "",
+          "result": 3
+        }
+      ]
     }
   ],
   "results": [
