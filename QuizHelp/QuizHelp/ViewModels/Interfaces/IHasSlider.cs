@@ -1,4 +1,4 @@
-﻿namespace QuizHelp.ViewModels
+﻿namespace QuizHelp.ViewModels.Interfaces
 {
     public interface IHasSlider
     {

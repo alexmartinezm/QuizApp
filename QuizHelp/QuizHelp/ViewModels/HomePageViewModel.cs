@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Prism.Commands;
 using QuizHelp.Data;
 using QuizHelp.Extensions;
 using QuizHelp.ViewModels.Base;
 using System.Windows.Input;
 using Xamarin.Forms;
+using QuizHelp.ViewModels.Interfaces;
 
 namespace QuizHelp.ViewModels
 {

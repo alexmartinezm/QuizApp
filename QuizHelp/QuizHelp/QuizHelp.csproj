@@ -20,6 +20,8 @@
     <Folder Include="Models\" />
     <Folder Include="Data\" />
     <Folder Include="Extensions\" />
+    <Folder Include="ViewModels\Interfaces\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Data\quiz_data.json" />
