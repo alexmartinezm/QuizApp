@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using QuizHelp.ViewModels.Interfaces;
 using System.Reflection;
 using System.IO;
+using System.Linq;
 
 namespace QuizHelp.ViewModels
 {
@@ -14,8 +15,10 @@ namespace QuizHelp.ViewModels
     {
         private ObservableCollection<Question> _questions;
         private double _sliderValue;
+        private double _maximumValue;
+        private bool _canChangeQuesiton;
 
-        public ObservableCollection<Question> Questions
+        public ObservableCollection<Question> QuestionList
         {
             get => _questions;
 
@@ -23,10 +26,13 @@ namespace QuizHelp.ViewModels
             {
                 _questions = value;
                 RaisePropertyChanged();
+                MaximumValue = QuestionList.Count - 1;
             }
         }
 
         public ICommand ValueChangedCommand { get; set; }
+
+        public ICommand QuestionChangedCommand { get; set; }
 
         public double SliderValue
         {
@@ -41,13 +47,36 @@ namespace QuizHelp.ViewModels
 
         public double MinimumValue { get; set; }
 
-        public double MaximumValue { get; set; } = 3.0;
+        public double MaximumValue
+        {
+            get => _maximumValue;
+
+            set
+            {
+                _maximumValue = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int StartPosition { get; set; }
+
+        public bool CanChangeQuesiton
+        {
+            get => _canChangeQuesiton;
+
+            set
+            {
+                _canChangeQuesiton = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public HomePageViewModel()
         {
             Title = "Home";
 
             SliderValue = 1.5;
+            CanChangeQuesiton = false;
             LoadCommands();
             LoadData();
         }
@@ -55,12 +84,22 @@ namespace QuizHelp.ViewModels
         private void LoadCommands()
         {
             ValueChangedCommand = new Command(OnValueChanged);
+            QuestionChangedCommand = new Command(OnQuestionChanged);
         }
 
         private void OnValueChanged()
         {
             var newValue = Math.Round(SliderValue / 1);
             SliderValue = newValue * 1;
+        }
+
+        private void OnQuestionChanged(object obj)
+        {
+            if (QuestionList == null || !QuestionList.Any())
+                return;
+
+            // TODO Add logic when answering a question
+
         }
 
         private void LoadData()
@@ -73,7 +112,7 @@ namespace QuizHelp.ViewModels
                 jsonData = reader.ReadToEnd();
             }
 
-            Questions = Quiz.FromJson(jsonData).Questions.ToObservableCollection();
+            QuestionList = Quiz.FromJson(jsonData).Questions.ToObservableCollection();
         }
     }
 }

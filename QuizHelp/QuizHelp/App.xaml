@@ -5,6 +5,7 @@
              x:Class="QuizHelp.App">
     
     <prism:PrismApplication.Resources>
+        <Color x:Key="PageBackgroundColor">#d3ece1</Color>
     </prism:PrismApplication.Resources>
     
 </prism:PrismApplication>

@@ -10,8 +10,11 @@ namespace QuizHelp.iOS.Renderers
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Slider> e)
         {
-            SetNativeControl(new Controls.FancySlideriOS(((FancySlider)e.NewElement).BarHeight));
-            base.OnElementChanged(e);
+            if (e.NewElement != null && e.NewElement is FancySlider slider)
+            {
+                SetNativeControl(new Controls.FancySlideriOS(slider.BarHeight));
+                base.OnElementChanged(e);
+            }
         }
     }
 }

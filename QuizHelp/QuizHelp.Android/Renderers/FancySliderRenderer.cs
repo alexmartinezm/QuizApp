@@ -1,8 +1,4 @@
 ﻿using Android.Content;
-using Android.Graphics.Drawables;
-using Android.Graphics.Drawables.Shapes;
-using Android.OS;
-using Android.Widget;
 using QuizHelp.Controls;
 using QuizHelp.Droid.Renderers;
 using Xamarin.Forms;

@@ -14,6 +14,7 @@ namespace QuizHelp
 
         protected override void OnInitialized()
         {
+            InitializeComponent();
             NavigationService.NavigateAsync($"Navigation/{nameof(HomePage)}");
         }
 

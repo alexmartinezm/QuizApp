@@ -7,67 +7,63 @@
              x:Class="QuizHelp.Views.HomePage"
              Title="{Binding Title}">
 
-        <carousel:CarouselViewControl ItemsSource="{Binding Questions}"
-                                      Orientation="Horizontal"
-                                      VerticalOptions="FillAndExpand"
-                                      HorizontalOptions="FillAndExpand"
-                                      ShowArrows="false">
-        
-            <carousel:CarouselViewControl.ItemTemplate>
-                <DataTemplate>
+        <StackLayout>
+            <carousel:CarouselViewControl ItemsSource="{Binding QuestionList}"
+                                          Orientation="Horizontal"
+                                          VerticalOptions="FillAndExpand"
+                                          HorizontalOptions="FillAndExpand"
+                                          BackgroundColor="{StaticResource PageBackgroundColor}"
+                                          Position="{Binding StartPosition}"
+                                          PositionSelectedCommand="{Binding QuestionChangedCommand}"
+                                          ShowArrows="false">
+<!--                                          IsSwipeEnabled="{Binding CanChangeQuesiton}"-->
                 
-                    <StackLayout VerticalOptions="FillAndExpand"
-                                 HorizontalOptions="FillAndExpand"
-                                 Margin="10">
+                <carousel:CarouselViewControl.ItemTemplate>
+                    <DataTemplate>
                     
-                        <Label Text="{Binding Title}"
-                               FontSize="Large"
-                               TextColor="#4C4C4C"
-                               FontAttributes="Bold"
-                               HorizontalOptions="CenterAndExpand"
-                               HorizontalTextAlignment="Center"
-                               Margin="5, 40, 5, 40"/>
-                        <Label Text="{Binding Image}"
-                               FontSize="120"
-                               TextColor="Silver"
-                               HorizontalTextAlignment="Center">
-                            <Label.FontFamily>
-                                <OnPlatform x:TypeArguments="x:String">
-                                    <On Platform="Android" Value="fa-regular-400.ttf#Font Awesome 5 Free Regular" />
-                                    <On Platform="iOS" Value="Font Awesome 5 Free" />
-                                </OnPlatform>
-                            </Label.FontFamily>
-                        </Label>
+                        <StackLayout VerticalOptions="FillAndExpand"
+                                     HorizontalOptions="FillAndExpand"
+                                     Margin="10">
+                        
+                            <Label Text="{Binding Title}"
+                                   FontSize="Large"
+                                   TextColor="#4C4C4C"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="5, 40, 5, 40"/>
+                            <Label Text="{Binding Image}"
+                                   FontSize="120"
+                                   TextColor="Silver"
+                                   HorizontalTextAlignment="Center">
+                                <Label.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String">
+                                        <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
+                                        <On Platform="iOS" Value="Font Awesome 5 Free" />
+                                    </OnPlatform>
+                                </Label.FontFamily>
+                            </Label>
 
-                        <controls:FancySlider Maximum="{Binding MaximumValue}"
-                                              Minimum="{Binding MinimumValue}"
-                                              Value="{Binding SliderValue, Mode=TwoWay}"
-                                              BarHeight="20"
-                                              HeightRequest="60"
-                                              VerticalOptions="StartAndExpand"
-                                              HorizontalOptions="FillAndExpand">
-                            <Slider.Behaviors>
-                                <b:EventToCommandBehavior EventName="ValueChanged"
-                                                          Command="{Binding ValueChangedCommand}"
-                                                          CommandParameter="{Binding Value}"/>
-                            </Slider.Behaviors>
-                        </controls:FancySlider>
+                            <controls:FancySlider Maximum="{Binding MaximumValue}"
+                                                  Minimum="{Binding MinimumValue, Mode=TwoWay}"
+                                                  Value="{Binding SliderValue}"
+                                                  BarHeight="20"
+                                                  HeightRequest="60"
+                                                  VerticalOptions="StartAndExpand"
+                                                  HorizontalOptions="FillAndExpand">
+                                <Slider.Behaviors>
+                                    <b:EventToCommandBehavior EventName="ValueChanged"
+                                                              Command="{Binding ValueChangedCommand}"
+                                                              CommandParameter="{Binding SliderValue}"/>
+                                </Slider.Behaviors>
+                            </controls:FancySlider>
+                        
+                        </StackLayout>
                     
-                    </StackLayout>
+                    </DataTemplate>
+                </carousel:CarouselViewControl.ItemTemplate>
                 
-                </DataTemplate>
-                    <!--<controls:FancySlider Maximum="{Binding MaximumValue}"
-                                          Minimum="{Binding MinimumValue}"
-                                          Value="{Binding SliderValue, Mode=TwoWay}"
-                                          BarHeight="20">
-                        <Slider.Behaviors>
-                            <b:EventToCommandBehavior EventName="ValueChanged"
-                                                      Command="{Binding ValueChangedCommand}"
-                                                      CommandParameter="{Binding Value}"/>
-                        </Slider.Behaviors>
-                    </controls:FancySlider>-->
-            </carousel:CarouselViewControl.ItemTemplate>
-            
-        </carousel:CarouselViewControl>
+            </carousel:CarouselViewControl>
+        </StackLayout>
     
 </ContentPage>
