@@ -4,6 +4,7 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:controls="clr-namespace:QuizHelp.Controls"
              xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:fa1="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="QuizHelp.Views.HomePage"
              Title="{Binding Title}">
 
@@ -20,7 +21,7 @@
                 
                 <carousel:CarouselViewControl.ItemTemplate>
                     <DataTemplate>
-                    
+
                         <StackLayout VerticalOptions="FillAndExpand"
                                      HorizontalOptions="FillAndExpand"
                                      Margin="10">
@@ -32,7 +33,12 @@
                                    HorizontalOptions="CenterAndExpand"
                                    HorizontalTextAlignment="Center"
                                    Margin="5, 40, 5, 40"/>
-                            <Label Text="{Binding Image}"
+                            <fa1:IconImage Icon="{Binding Image}"
+                                           IconSize="120"
+                                           IconColor="#233144"
+                                           HorizontalOptions="CenterAndExpand"
+                                           />
+                            <!--<Label Text="{Binding Image}"
                                    FontSize="120"
                                    TextColor="Silver"
                                    HorizontalTextAlignment="Center">
@@ -42,7 +48,7 @@
                                         <On Platform="iOS" Value="Font Awesome 5 Free" />
                                     </OnPlatform>
                                 </Label.FontFamily>
-                            </Label>
+                            </Label>-->
 
                             <controls:FancySlider Maximum="{Binding MaximumValue}"
                                                   Minimum="{Binding MinimumValue, Mode=TwoWay}"

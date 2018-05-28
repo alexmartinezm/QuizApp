@@ -10,13 +10,14 @@ namespace QuizHelp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Resource.Layout.tabbar;
+            ToolbarResource = Resource.Layout.toolbar;
 
             base.OnCreate(savedInstanceState);
 
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CarouselViewRenderer.Init();
+            Plugin.Iconize.Iconize.Init(Resource.Id.toolbar, Resource.Id.tabs);
 
             LoadApplication(new App(new AndroidInitializer()));
         }

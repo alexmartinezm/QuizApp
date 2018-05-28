@@ -15,6 +15,8 @@ namespace QuizHelp
         protected override void OnInitialized()
         {
             InitializeComponent();
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+
             NavigationService.NavigateAsync($"Navigation/{nameof(HomePage)}");
         }
 

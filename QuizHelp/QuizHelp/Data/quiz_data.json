@@ -2,7 +2,7 @@
   "questions": [
     {
       "title": "¿De qué presupuesto disponéis?",
-      "image": "\uF153",
+      "image": "fa-euro",
       "answers": [
         {
           "title": "El mínimo posible",
@@ -24,7 +24,7 @@
     },
     {
       "title": "¿El rendimiento es importante?",
-      "image": "\uF274",
+      "image": "fa-clock-o",
       "answers": [
         {
           "title": "No",
@@ -46,7 +46,7 @@
     },
     {
       "title": "¿Cuánto tiempo de desarrollo quieres invertir?",
-      "image": "\uF111",
+      "image": "fa-clock-o",
       "answers": [
         {
           "title": "El mínimo posible",
