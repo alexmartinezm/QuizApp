@@ -1,25 +1,16 @@
-﻿// To parse this JSON data, add NuGet 'Newtonsoft.Json' then do one of these:
-//
-//    using QuizHelp;
-//
-//    var quizz = Quizz.FromJson(jsonString);
-//    var question = Question.FromJson(jsonString);
-//    var answer = Answer.FromJson(jsonString);
-//    var result = Result.FromJson(jsonString);
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace QuizHelp
 {
     public class Question : ModelBase<Question>
     {
-        private List<Answer> _answers;
+        private IEnumerable<Answer> _answers;
         private string _title;
-        private string _image;
+        private bool _singleIcon;
 
         [JsonProperty("answers")]
-        public List<Answer> Answers
+        public IEnumerable<Answer> Answers
         {
             get => _answers;
 
@@ -42,14 +33,14 @@ namespace QuizHelp
             }
         }
 
-        [JsonProperty("image")]
-        public string Image
+        [JsonProperty("singleIcon")]
+        public bool SingleIcon
         {
-            get => _image;
+            get => _singleIcon;
 
             set
             {
-                _image = value;
+                _singleIcon = value;
                 RaisePropertyChanged();
             }
         }

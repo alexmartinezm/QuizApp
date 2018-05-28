@@ -6,70 +6,38 @@
              xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              xmlns:fa1="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="QuizHelp.Views.HomePage"
+             BackgroundColor="{StaticResource PageBackgroundColor}"
              Title="{Binding Title}">
+    
+            <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand"
+                         Margin="10"
+                         Spacing="0">
+            
+                <Label Text="{Binding CurrentQuestion.Title}"
+                       FontSize="Large"
+                       TextColor="#4C4C4C"
+                       FontAttributes="Bold"
+                       HorizontalOptions="CenterAndExpand"
+                       HorizontalTextAlignment="Center"
+                       Margin="5, 40, 5, 40"/>
+        
+                <controls:DynamicLabel AnswersList="{Binding CurrentQuestion.Answers}"
+                                       SelectedAnswer="{Binding SliderValue}" />
 
-        <StackLayout>
-            <carousel:CarouselViewControl ItemsSource="{Binding QuestionList}"
-                                          Orientation="Horizontal"
-                                          VerticalOptions="FillAndExpand"
-                                          HorizontalOptions="FillAndExpand"
-                                          BackgroundColor="{StaticResource PageBackgroundColor}"
-                                          Position="{Binding StartPosition}"
-                                          PositionSelectedCommand="{Binding QuestionChangedCommand}"
-                                          ShowArrows="false">
-<!--                                          IsSwipeEnabled="{Binding CanChangeQuesiton}"-->
-                
-                <carousel:CarouselViewControl.ItemTemplate>
-                    <DataTemplate>
-
-                        <StackLayout VerticalOptions="FillAndExpand"
-                                     HorizontalOptions="FillAndExpand"
-                                     Margin="10">
-                        
-                            <Label Text="{Binding Title}"
-                                   FontSize="Large"
-                                   TextColor="#4C4C4C"
-                                   FontAttributes="Bold"
-                                   HorizontalOptions="CenterAndExpand"
-                                   HorizontalTextAlignment="Center"
-                                   Margin="5, 40, 5, 40"/>
-                            <fa1:IconImage Icon="{Binding Image}"
-                                           IconSize="120"
-                                           IconColor="#233144"
-                                           HorizontalOptions="CenterAndExpand"
-                                           />
-                            <!--<Label Text="{Binding Image}"
-                                   FontSize="120"
-                                   TextColor="Silver"
-                                   HorizontalTextAlignment="Center">
-                                <Label.FontFamily>
-                                    <OnPlatform x:TypeArguments="x:String">
-                                        <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
-                                        <On Platform="iOS" Value="Font Awesome 5 Free" />
-                                    </OnPlatform>
-                                </Label.FontFamily>
-                            </Label>-->
-
-                            <controls:FancySlider Maximum="{Binding MaximumValue}"
-                                                  Minimum="{Binding MinimumValue, Mode=TwoWay}"
-                                                  Value="{Binding SliderValue}"
-                                                  BarHeight="20"
-                                                  HeightRequest="60"
-                                                  VerticalOptions="StartAndExpand"
-                                                  HorizontalOptions="FillAndExpand">
-                                <Slider.Behaviors>
-                                    <b:EventToCommandBehavior EventName="ValueChanged"
-                                                              Command="{Binding ValueChangedCommand}"
-                                                              CommandParameter="{Binding SliderValue}"/>
-                                </Slider.Behaviors>
-                            </controls:FancySlider>
-                        
-                        </StackLayout>
-                    
-                    </DataTemplate>
-                </carousel:CarouselViewControl.ItemTemplate>
-                
-            </carousel:CarouselViewControl>
-        </StackLayout>
+                <controls:FancySlider Maximum="{Binding MaximumValue}"
+                                      Minimum="{Binding MinimumValue, Mode=TwoWay}"
+                                      Value="{Binding SliderValue}"
+                                      BarHeight="20"
+                                      HeightRequest="60"
+                                      VerticalOptions="StartAndExpand"
+                                      HorizontalOptions="FillAndExpand">
+                    <controls:FancySlider.Behaviors>
+                        <b:EventToCommandBehavior EventName="ValueChanged"
+                                                  Command="{Binding ValueChangedCommand}" />
+                    </controls:FancySlider.Behaviors>
+                </controls:FancySlider>
+            
+            </StackLayout>
     
 </ContentPage>

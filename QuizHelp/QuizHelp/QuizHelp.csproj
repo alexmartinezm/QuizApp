@@ -18,6 +18,7 @@
   <ItemGroup>
     <Compile Remove="HomePage.cs" />
     <Compile Remove="Commands\ValueChangedCommand.cs" />
+    <Compile Remove="Converters\ApplyFasStyleConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />

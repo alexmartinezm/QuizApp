@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms.Xaml;
-
-namespace QuizHelp.Views
+﻿namespace QuizHelp.Views
 {
     public partial class HomePage
     {

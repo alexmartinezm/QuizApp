@@ -2,6 +2,8 @@
 using QuizHelp.iOS.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using CarouselView.FormsPlugin.iOS;
+using System.Linq;
 
 [assembly: ExportRenderer(typeof(FancySlider), typeof(FancySliderRenderer))]
 namespace QuizHelp.iOS.Renderers
@@ -12,9 +14,26 @@ namespace QuizHelp.iOS.Renderers
         {
             if (e.NewElement != null && e.NewElement is FancySlider slider)
             {
-                SetNativeControl(new Controls.FancySlideriOS(slider.BarHeight));
+                var customSlider = new Controls.FancySlideriOS(slider.BarHeight);
+                customSlider.ValueChanged += OnControlValueChanged;
+
+                SetNativeControl(customSlider);
+
                 base.OnElementChanged(e);
             }
+        }
+
+        void OnControlValueChanged(object sender, System.EventArgs e)
+        {
+            ((IElementController)Element).SetValueFromRenderer(Slider.ValueProperty, Control.Value);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (Control != null)
+                Control.ValueChanged -= OnControlValueChanged;
+
+            base.Dispose(disposing);
         }
     }
 }

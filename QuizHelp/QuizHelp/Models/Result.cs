@@ -6,6 +6,7 @@ namespace QuizHelp
     {
         private string _description;
         private string _title;
+        private string _image;
 
         [JsonProperty("description")]
         public string Description
@@ -26,6 +27,18 @@ namespace QuizHelp
             set
             {
                 _title = value;
+            }
+        }
+
+        [JsonProperty("image")]
+        public string Image
+        {
+            get => _image;
+
+            set
+            {
+                _image = value;
+                RaisePropertyChanged();
             }
         }
     }

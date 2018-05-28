@@ -1,5 +1,8 @@
 ﻿using CoreGraphics;
 using UIKit;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace QuizHelp.iOS.Controls
 {
@@ -10,6 +13,9 @@ namespace QuizHelp.iOS.Controls
         public FancySlideriOS(double barHeight)
         {
             _barHeight = barHeight;
+            ThumbTintColor = Color.FromHex("#857E7B").ToUIColor();
+            MaximumTrackTintColor = Color.FromHex("#8BBF9F").ToUIColor();
+            MinimumTrackTintColor = Color.FromHex("#8BBF9F").ToUIColor();
         }
 
         public override CGRect TrackRectForBounds(CGRect forBounds)

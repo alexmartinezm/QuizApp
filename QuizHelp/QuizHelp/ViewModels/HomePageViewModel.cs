@@ -1,38 +1,50 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Windows.Input;
 using QuizHelp.Extensions;
 using QuizHelp.ViewModels.Base;
-using System.Windows.Input;
-using Xamarin.Forms;
 using QuizHelp.ViewModels.Interfaces;
-using System.Reflection;
-using System.IO;
 using System.Linq;
+using Prism.Commands;
 
 namespace QuizHelp.ViewModels
 {
     public class HomePageViewModel : ViewModelBase, IHasSlider
     {
-        private ObservableCollection<Question> _questions;
+        private IEnumerable<Question> _questionList;
         private double _sliderValue;
         private double _maximumValue;
         private bool _canChangeQuesiton;
+        private string _answerImage;
+        private Question _currentQuestion;
 
-        public ObservableCollection<Question> QuestionList
+        public DelegateCommand<IEnumerable<Answer>> ValueChangedCommand { get; private set; }
+        public ICommand QuestionChangedCommand { get; set; }
+
+        public Question CurrentQuestion
         {
-            get => _questions;
+            get => _currentQuestion;
 
             set
             {
-                _questions = value;
+                _currentQuestion = value;
                 RaisePropertyChanged();
-                MaximumValue = QuestionList.Count - 1;
+                MaximumValue = _currentQuestion.Answers.Count() - 1;
             }
         }
 
-        public ICommand ValueChangedCommand { get; set; }
+        public string AnswerImage
+        {
+            get => _answerImage;
 
-        public ICommand QuestionChangedCommand { get; set; }
+            set
+            {
+                _answerImage = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public double SliderValue
         {
@@ -58,7 +70,7 @@ namespace QuizHelp.ViewModels
             }
         }
 
-        public int StartPosition { get; set; }
+        public int CurrentPosition { get; set; }
 
         public bool CanChangeQuesiton
         {
@@ -75,32 +87,38 @@ namespace QuizHelp.ViewModels
         {
             Title = "Home";
 
-            SliderValue = 1.5;
-            CanChangeQuesiton = false;
+            SliderValue = 0;
+            CanChangeQuesiton = true;
             LoadCommands();
             LoadData();
         }
 
         private void LoadCommands()
         {
-            ValueChangedCommand = new Command(OnValueChanged);
-            QuestionChangedCommand = new Command(OnQuestionChanged);
+            ValueChangedCommand = new DelegateCommand<IEnumerable<Answer>>(OnValueChanged, CanChangeValue);
+            //QuestionChangedCommand = new Command(OnQuestionChanged);
         }
 
-        private void OnValueChanged()
+        private bool CanChangeValue(IEnumerable<Answer> parameter)
+        {
+            return true;
+        }
+
+        private void OnValueChanged(IEnumerable<Answer> parameter)
         {
             var newValue = Math.Round(SliderValue / 1);
             SliderValue = newValue * 1;
+            AnswerImage = CurrentQuestion.Answers.ElementAt((int)SliderValue).Image;
         }
 
-        private void OnQuestionChanged(object obj)
-        {
-            if (QuestionList == null || !QuestionList.Any())
-                return;
+        //private void OnQuestionChanged(object obj)
+        //{
+        //    if (QuestionList == null || !QuestionList.Any())
+        //        return;
 
-            // TODO Add logic when answering a question
-
-        }
+        //    // TODO Add logic when answering a question
+        //    //SelectedAnswer = QuestionList.ElementAt(CurrentPosition).Answers.First();
+        //}
 
         private void LoadData()
         {
@@ -112,7 +130,12 @@ namespace QuizHelp.ViewModels
                 jsonData = reader.ReadToEnd();
             }
 
-            QuestionList = Quiz.FromJson(jsonData).Questions.ToObservableCollection();
+            _questionList = Quiz.FromJson(jsonData).Questions.ToObservableCollection();
+
+            if (_questionList == null || !_questionList.Any())
+                return;
+
+            CurrentQuestion = _questionList.First();
         }
     }
 }
