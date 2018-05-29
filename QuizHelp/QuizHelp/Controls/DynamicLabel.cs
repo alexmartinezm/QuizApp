@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Plugin.Iconize;
 using System.Linq;
+using Prism;
 
 namespace QuizHelp.Controls
 {
@@ -69,11 +70,28 @@ namespace QuizHelp.Controls
                     FontSize = 36,
                     TextColor = Color.FromHex("#233144"),
                     HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center,
                     IsVisible = i == 0
                 });
             }
 
-            Content = _rootStack;
+            var width = 140;
+            var roundedFrame = new Frame
+            {
+                CornerRadius = Device.RuntimePlatform == Device.Android ? 100 : (float)(width / 2.0),
+                HeightRequest = width,
+                WidthRequest = width,
+                BackgroundColor = Color.White,
+                BorderColor = Color.White,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                Margin = 0,
+                Padding = 0,
+                HasShadow = false
+            };
+
+            roundedFrame.Content = _rootStack;
+            Content = roundedFrame;
         }
     }
 }

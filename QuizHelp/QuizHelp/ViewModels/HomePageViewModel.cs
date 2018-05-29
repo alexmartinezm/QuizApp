@@ -17,8 +17,8 @@ namespace QuizHelp.ViewModels
         private double _sliderValue;
         private double _maximumValue;
         private bool _canChangeQuesiton;
-        private string _answerImage;
         private Question _currentQuestion;
+        private Answer _selectedAnswer;
 
         public DelegateCommand<IEnumerable<Answer>> ValueChangedCommand { get; private set; }
         public ICommand QuestionChangedCommand { get; set; }
@@ -35,13 +35,13 @@ namespace QuizHelp.ViewModels
             }
         }
 
-        public string AnswerImage
+        public Answer SelectedAnswer
         {
-            get => _answerImage;
+            get => _selectedAnswer;
 
             set
             {
-                _answerImage = value;
+                _selectedAnswer = value;
                 RaisePropertyChanged();
             }
         }
@@ -108,17 +108,8 @@ namespace QuizHelp.ViewModels
         {
             var newValue = Math.Round(SliderValue / 1);
             SliderValue = newValue * 1;
-            AnswerImage = CurrentQuestion.Answers.ElementAt((int)SliderValue).Image;
+            SelectedAnswer = _questionList.ElementAt(CurrentPosition).Answers.ElementAt((int)SliderValue);
         }
-
-        //private void OnQuestionChanged(object obj)
-        //{
-        //    if (QuestionList == null || !QuestionList.Any())
-        //        return;
-
-        //    // TODO Add logic when answering a question
-        //    //SelectedAnswer = QuestionList.ElementAt(CurrentPosition).Answers.First();
-        //}
 
         private void LoadData()
         {
@@ -136,6 +127,7 @@ namespace QuizHelp.ViewModels
                 return;
 
             CurrentQuestion = _questionList.First();
+            OnValueChanged(CurrentQuestion.Answers);
         }
     }
 }

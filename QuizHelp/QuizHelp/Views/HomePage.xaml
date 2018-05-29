@@ -16,7 +16,7 @@
             
                 <Label Text="{Binding CurrentQuestion.Title}"
                        FontSize="Large"
-                       TextColor="#4C4C4C"
+                       TextColor="{StaticResource DarkBlueColor}"
                        FontAttributes="Bold"
                        HorizontalOptions="CenterAndExpand"
                        HorizontalTextAlignment="Center"
@@ -24,6 +24,13 @@
         
                 <controls:DynamicLabel AnswersList="{Binding CurrentQuestion.Answers}"
                                        SelectedAnswer="{Binding SliderValue}" />
+
+                <Label Text="{Binding SelectedAnswer.Title}"
+                       TextColor="{StaticResource DarkBlueColor}"
+                       FontSize="Medium"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"
+                       Margin="0, 40, 0, 0" />
 
                 <controls:FancySlider Maximum="{Binding MaximumValue}"
                                       Minimum="{Binding MinimumValue, Mode=TwoWay}"
@@ -37,7 +44,7 @@
                                                   Command="{Binding ValueChangedCommand}" />
                     </controls:FancySlider.Behaviors>
                 </controls:FancySlider>
-            
+        
             </StackLayout>
     
 </ContentPage>
