@@ -14,6 +14,8 @@ namespace QuizHelp.Controls
 
         public static readonly BindableProperty SelectedAnswerProperty = BindableProperty.Create(nameof(SelectedAnswer), typeof(int), typeof(DynamicLabel), 0, BindingMode.OneWay, null, OnSelectedAnswerChanged);
 
+        public static readonly BindableProperty SingleIconProperty = BindableProperty.Create(nameof(SingleIcon), typeof(bool), typeof(DynamicLabel), false);
+
         private static void OnAnswersListChanged(BindableObject bindable, object oldValue, object newValue)
         {
             ((DynamicLabel)bindable).CreateLabels(newValue as IEnumerable<Answer>);
@@ -29,15 +31,27 @@ namespace QuizHelp.Controls
             if (answer == null || !answer.HasValue || _rootStack == null || !_rootStack.Children.Any())
                 return;
 
-            for (int i = 0; i < _rootStack.Children.Count(); i++)
+            if (SingleIcon)
             {
-                if (i <= answer)
+                foreach (var child in _rootStack.Children)
                 {
-                    _rootStack.Children.ElementAt(i).IsVisible = true;
+                    child.IsVisible = false;
                 }
-                else
+
+                _rootStack.Children.ElementAt(answer.Value).IsVisible = true;
+            }
+            else
+            {
+                for (int i = 0; i < _rootStack.Children.Count(); i++)
                 {
-                    _rootStack.Children.ElementAt(i).IsVisible = false;
+                    if (i <= answer)
+                    {
+                        _rootStack.Children.ElementAt(i).IsVisible = true;
+                    }
+                    else
+                    {
+                        _rootStack.Children.ElementAt(i).IsVisible = false;
+                    }
                 }
             }
         }
@@ -53,6 +67,13 @@ namespace QuizHelp.Controls
             get => (int)GetValue(SelectedAnswerProperty);
 
             set => SetValue(SelectedAnswerProperty, value);
+        }
+
+        public bool SingleIcon
+        {
+            get => (bool)GetValue(SingleIconProperty);
+
+            set => SetValue(SingleIconProperty, value);
         }
 
         private void CreateLabels(IEnumerable<Answer> answers)

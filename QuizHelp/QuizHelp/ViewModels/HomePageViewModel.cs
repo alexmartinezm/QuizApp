@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using System.Windows.Input;
+using Prism.Commands;
 using QuizHelp.Extensions;
 using QuizHelp.ViewModels.Base;
 using QuizHelp.ViewModels.Interfaces;
-using System.Linq;
-using Prism.Commands;
 
 namespace QuizHelp.ViewModels
 {
@@ -19,9 +18,12 @@ namespace QuizHelp.ViewModels
         private bool _canChangeQuesiton;
         private Question _currentQuestion;
         private Answer _selectedAnswer;
+        private static Random _random;
+        private bool _isQuizCompleted;
+        private readonly List<int> _generatedQuestions;
 
         public DelegateCommand<IEnumerable<Answer>> ValueChangedCommand { get; private set; }
-        public ICommand QuestionChangedCommand { get; set; }
+        public DelegateCommand QuestionChangedCommand { get; set; }
 
         public Question CurrentQuestion
         {
@@ -83,10 +85,22 @@ namespace QuizHelp.ViewModels
             }
         }
 
+        public bool IsQuizCompleted
+        {
+            get => _isQuizCompleted;
+            set
+            {
+                _isQuizCompleted = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public HomePageViewModel()
         {
             Title = "Home";
 
+            _random = new Random();
+            _generatedQuestions = new List<int>();
             SliderValue = 0;
             CanChangeQuesiton = true;
             LoadCommands();
@@ -96,7 +110,22 @@ namespace QuizHelp.ViewModels
         private void LoadCommands()
         {
             ValueChangedCommand = new DelegateCommand<IEnumerable<Answer>>(OnValueChanged, CanChangeValue);
-            //QuestionChangedCommand = new Command(OnQuestionChanged);
+            QuestionChangedCommand = new DelegateCommand(OnQuestionChanged);
+        }
+
+        private void OnQuestionChanged()
+        {
+            CurrentPosition = GenerateQuestion(_questionList);
+            if (CurrentPosition == -1)
+            {
+                IsQuizCompleted = true;
+            }
+            else
+            {
+                SliderValue = 0;
+                CurrentQuestion = _questionList.ElementAt(CurrentPosition);
+                OnValueChanged(CurrentQuestion.Answers);
+            }
         }
 
         private bool CanChangeValue(IEnumerable<Answer> parameter)
@@ -108,13 +137,17 @@ namespace QuizHelp.ViewModels
         {
             var newValue = Math.Round(SliderValue / 1);
             SliderValue = newValue * 1;
-            SelectedAnswer = _questionList.ElementAt(CurrentPosition).Answers.ElementAt((int)SliderValue);
+
+            if (parameter == null)
+                return;
+
+            SelectedAnswer = parameter.ElementAt((int)SliderValue);
         }
 
         private void LoadData()
         {
             var assembly = typeof(App).GetTypeInfo().Assembly;
-            Stream stream = assembly.GetManifestResourceStream("QuizHelp.Data.quiz_data.json");
+            var stream = assembly.GetManifestResourceStream("QuizHelp.Data.quiz_data.json");
             string jsonData = string.Empty;
             using (var reader = new StreamReader(stream))
             {
@@ -126,8 +159,37 @@ namespace QuizHelp.ViewModels
             if (_questionList == null || !_questionList.Any())
                 return;
 
-            CurrentQuestion = _questionList.First();
-            OnValueChanged(CurrentQuestion.Answers);
+            CurrentPosition = GenerateQuestion(_questionList);
+
+            if (CurrentPosition == -1)
+            {
+                IsQuizCompleted = true;
+            }
+            else
+            {
+                OnValueChanged(CurrentQuestion.Answers);
+            }
+        }
+
+        private int GenerateQuestion(IEnumerable<Question> questionList)
+        {
+            var result = -1;
+
+            int index;
+
+            do
+            {
+                index = _random.Next(0, questionList.Count());
+            } while (_generatedQuestions.Contains(index) && _generatedQuestions.Count() != questionList.Count());
+            _generatedQuestions.Add(index);
+
+            if (index != -1)
+            {
+                CurrentQuestion = questionList.ElementAt(index);
+                result = index;
+            }
+
+            return result;
         }
     }
 }

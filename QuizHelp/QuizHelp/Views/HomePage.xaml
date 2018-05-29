@@ -13,8 +13,9 @@
                  HorizontalOptions="FillAndExpand"
                  Margin="10"
                  Spacing="0">
-    
-        <Label Text="{Binding CurrentQuestion.Title}"
+
+        <StackLayout IsVisible="{Binding IsQuizCompleted, Converter={StaticResource BoolToNotBoolConverter}}">
+            <Label Text="{Binding CurrentQuestion.Title}"
                FontSize="Large"
                TextColor="{StaticResource DarkBlueColor}"
                FontAttributes="Bold"
@@ -22,40 +23,51 @@
                HorizontalTextAlignment="Center"
                Margin="5, 40, 5, 40"/>
 
-        <controls:DynamicLabel AnswersList="{Binding CurrentQuestion.Answers}"
-                               SelectedAnswer="{Binding SliderValue}" />
+            <controls:DynamicLabel AnswersList="{Binding CurrentQuestion.Answers}"
+                                   SelectedAnswer="{Binding SliderValue}"
+                                   SingleIcon="{Binding CurrentQuestion.SingleIcon}" />
 
-        <Label Text="{Binding SelectedAnswer.Title}"
-               TextColor="{StaticResource DarkBlueColor}"
-               FontSize="Medium"
-               HorizontalOptions="CenterAndExpand"
-               VerticalOptions="Center"
-               Margin="0, 40, 0, 0" />
+            <Label Text="{Binding SelectedAnswer.Title}"
+                   TextColor="{StaticResource DarkBlueColor}"
+                   FontSize="Medium"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
+                   Margin="0, 40, 0, 0" />
 
-        <controls:FancySlider Maximum="{Binding MaximumValue}"
-                              Minimum="{Binding MinimumValue, Mode=TwoWay}"
-                              Value="{Binding SliderValue}"
-                              BarHeight="20"
-                              HeightRequest="60"
-                              VerticalOptions="StartAndExpand"
-                              HorizontalOptions="FillAndExpand">
-            <controls:FancySlider.Behaviors>
-                <b:EventToCommandBehavior EventName="ValueChanged"
-                                          Command="{Binding ValueChangedCommand}" />
-            </controls:FancySlider.Behaviors>
-        </controls:FancySlider>
+            <controls:FancySlider Maximum="{Binding MaximumValue}"
+                                  Minimum="{Binding MinimumValue, Mode=TwoWay}"
+                                  Value="{Binding SliderValue}"
+                                  BarHeight="20"
+                                  HeightRequest="60"
+                                  VerticalOptions="StartAndExpand"
+                                  HorizontalOptions="FillAndExpand">
+                <controls:FancySlider.Behaviors>
+                    <b:EventToCommandBehavior EventName="ValueChanged"
+                                              Command="{Binding ValueChangedCommand}"
+                                              CommandParameter="{Binding CurrentQuestion.Answers}"/>
+                </controls:FancySlider.Behaviors>
+            </controls:FancySlider>
 
-        <controls:CircleFrame BackgroundColor="{StaticResource ButtonColor}"
-                              BorderColor="Transparent">
-            <x:Arguments>
-                <x:Double>60</x:Double>
-            </x:Arguments>
-            <fa1:IconImage Icon="fas-angle-right"
-                           IconSize="50"
-                           IconColor="White"
-                           HorizontalOptions="CenterAndExpand"
-                           VerticalOptions="Center"/>
-        </controls:CircleFrame>
+            <controls:CircleFrame BackgroundColor="{StaticResource ButtonColor}"
+                                  BorderColor="Transparent">
+                <x:Arguments>
+                    <x:Double>60</x:Double>
+                </x:Arguments>
+                <fa1:IconButton Text="fas-angle-right"
+                                FontSize="50"
+                                TextColor="White"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="Center"
+                                Command="{Binding QuestionChangedCommand}"/>
+            </controls:CircleFrame>
+        </StackLayout>
+        
+        <StackLayout IsVisible="{Binding IsQuizCompleted}">
+            <Label Text="Cuestionario completado" />
+        </StackLayout>
         
     </StackLayout>
     
