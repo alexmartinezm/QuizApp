@@ -5802,6 +5802,9 @@ namespace QuizHelp.Droid
 			// aapt resource value: 0x7f090025
 			public const int showTitle = 2131296293;
 			
+			// aapt resource value: 0x7f0900ce
+			public const int sliding_tabs = 2131296462;
+			
 			// aapt resource value: 0x7f09008d
 			public const int smallLabel = 2131296397;
 			
@@ -5843,9 +5846,6 @@ namespace QuizHelp.Droid
 			
 			// aapt resource value: 0x7f09001f
 			public const int tabMode = 2131296287;
-			
-			// aapt resource value: 0x7f0900ce
-			public const int tabs = 2131296462;
 			
 			// aapt resource value: 0x7f090019
 			public const int tag_transition_group = 2131296281;
@@ -6223,10 +6223,10 @@ namespace QuizHelp.Droid
 			public const int support_simple_spinner_dropdown_item = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int tabbar = 2130968642;
+			public const int Tabbar = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int toolbar = 2130968643;
+			public const int Toolbar = 2130968643;
 			
 			// aapt resource value: 0x7f040044
 			public const int tooltip = 2130968644;

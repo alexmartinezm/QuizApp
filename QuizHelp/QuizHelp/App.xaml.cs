@@ -16,7 +16,9 @@ namespace QuizHelp
         {
             InitializeComponent();
             Plugin.Iconize.Iconize
-                .With(new Plugin.Iconize.Fonts.FontAwesomeModule());
+                  .With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
+                  .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
+                  .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
             NavigationService.NavigateAsync($"Navigation/{nameof(HomePage)}");
         }

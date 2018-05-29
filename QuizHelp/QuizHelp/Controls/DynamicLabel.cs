@@ -75,22 +75,11 @@ namespace QuizHelp.Controls
                 });
             }
 
-            var width = 140;
-            var roundedFrame = new Frame
+            var roundedFrame = new CircleFrame(140)
             {
-                CornerRadius = Device.RuntimePlatform == Device.Android ? 100 : (float)(width / 2.0),
-                HeightRequest = width,
-                WidthRequest = width,
-                BackgroundColor = Color.White,
-                BorderColor = Color.White,
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center,
-                Margin = 0,
-                Padding = 0,
-                HasShadow = false
+                Content = _rootStack
             };
 
-            roundedFrame.Content = _rootStack;
             Content = roundedFrame;
         }
     }

@@ -6,22 +6,22 @@
       "answers": [
         {
           "title": "El mínimo posible",
-          "image": "fa-euro",
+          "image": "fas-euro-sign",
           "result": 0
         },
         {
           "title": "Bajo",
-          "image": "fa-euro",
+          "image": "fas-euro-sign",
           "result": 1
         },
         {
           "title": "Medio",
-          "image": "fa-euro",
+          "image": "fas-euro-sign",
           "result": 2
         },
         {
           "title": "Alto",
-          "image": "fa-euro",
+          "image": "fas-euro-sign",
           "result": 3
         }
       ]
@@ -32,22 +32,22 @@
       "answers": [
         {
           "title": "Más de seis meses",
-          "image": "fa-exclamation",
+          "image": "fas-exclamation",
           "result": 3
         },
         {
           "title": "Seis meses",
-          "image": "fa-exclamation",
+          "image": "fas-exclamation",
           "result": 2
         },
         {
           "title": "Un par de meses",
-          "image": "fa-exclamation",
+          "image": "fas-exclamation",
           "result": 1
         },
         {
           "title": "Queremos un prototipo lo antes posible",
-          "image": "fa-exclamation",
+          "image": "fas-exclamation",
           "result": 0
         }
       ]
@@ -58,22 +58,22 @@
       "answers": [
         {
           "title": "Diariamente",
-          "image": "stopwatch",
+          "image": "fas-stopwatch",
           "result": 2
         },
         {
           "title": "Una vez por semana",
-          "image": "clock",
+          "image": "fas-clock",
           "result": 1
         },
         {
           "title": "Consultas esporádicas",
-          "image": "calendar-alt",
+          "image": "fas-calendar-alt",
           "result": 1
         },
         {
           "title": "Sólo en situaciones concretas",
-          "image": "calendar",
+          "image": "fas-calendar",
           "result": 0
         }
       ]
@@ -84,22 +84,22 @@
       "answers": [
         {
           "title": "Sólo desde moviles IOS y Android",
-          "image": "mobile",
+          "image": "fas-mobile",
           "result": 2
         },
         {
           "title": "Tal vez en algún momento del desarrollo",
-          "image": "tablet-alt",
+          "image": "fas-tablet-alt",
           "result": 1
         },
         {
           "title": "Si, pero quiero que tengan funcionalidades distintas",
-          "image": "laptop",
+          "image": "fas-laptop",
           "result": 1
         },
         {
           "title": "Si y quiero que sean iguales",
-          "image": "desktop",
+          "image": "fas-desktop",
           "result": 0
         }
       ]
@@ -110,22 +110,22 @@
       "answers": [
         {
           "title": "No, sólo quiero mostrar y recibir información",
-          "image": "bars",
+          "image": "fas-bars",
           "result": 0
         },
         {
           "title": "Quiero geolocalización y/o usar la cámara",
-          "image": "camera",
+          "image": "fas-camera",
           "result": 1
         },
         {
           "title": "Quiero poder leer/enviar SMS y leer los contactos",
-          "image": "envelope",
+          "image": "fas-envelope",
           "result": 2
         },
         {
           "title": "Usará bluetooth y se comunicará con otras apps",
-          "image": "signal",
+          "image": "fas-signal",
           "result": 3
         }
       ]
@@ -136,22 +136,22 @@
       "answers": [
         {
           "title": "Quiero una app lo más parecida a una app normal",
-          "image": "paint-brush",
+          "image": "fas-paint-brush",
           "result": 2
         },
         {
           "title": "Quiero que sea bonita, pero sin sacrificar usabilidad",
-          "image": "paint-brush",
+          "image": "fas-paint-brush",
           "result": 1
         },
         {
           "title": "Quiero algo distinto a las demás apps",
-          "image": "paint-brush",
+          "image": "fas-paint-brush",
           "result": 0
         },
         {
           "title": "Quiero un diseño 100% customizable e innovador",
-          "image": "paint-brush",
+          "image": "fas-paint-brush",
           "result": 0
         }
       ]
