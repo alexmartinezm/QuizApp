@@ -13,7 +13,7 @@
                  Margin="10"
                  Spacing="0">
 
-        <StackLayout IsVisible="{Binding IsQuizCompleted, Converter={StaticResource BoolToNotBoolConverter}}">
+        <StackLayout>
             <Label Text="{Binding CurrentQuestion.Title}"
                FontSize="Large"
                TextColor="{StaticResource DarkBlueColor}"
@@ -64,10 +64,6 @@
                                 Command="{Binding NewAnswerCommand}"
                                 CommandParameter="{Binding SliderValue}" />
             </controls:CircleFrame>
-        </StackLayout>
-        
-        <StackLayout IsVisible="{Binding IsQuizCompleted}">
-            <Label Text="Cuestionario completado" />
         </StackLayout>
         
     </StackLayout>

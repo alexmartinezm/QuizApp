@@ -2,8 +2,6 @@
 using QuizHelp.iOS.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using CarouselView.FormsPlugin.iOS;
-using System.Linq;
 
 [assembly: ExportRenderer(typeof(FancySlider), typeof(FancySliderRenderer))]
 namespace QuizHelp.iOS.Renderers

@@ -1,8 +1,8 @@
+using System;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using QuizHelp.Views;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -20,13 +20,13 @@ namespace QuizHelp
                   .With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
                   .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule());
 
-            NavigationService.NavigateAsync($"Navigation/{nameof(HomePage)}");
+            NavigationService.NavigateAsync(new Uri($"/{nameof(HomePage)}", UriKind.Absolute));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>("Navigation");
             containerRegistry.RegisterForNavigation<HomePage>();
+            containerRegistry.RegisterForNavigation<ResultPage>();
         }
 
         protected override void OnStart()

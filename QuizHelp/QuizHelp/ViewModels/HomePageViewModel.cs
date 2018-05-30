@@ -4,13 +4,18 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Prism.Commands;
+using Prism.Navigation;
+using QuizHelp.Constants;
 using QuizHelp.Extensions;
 using QuizHelp.ViewModels.Base;
+using QuizHelp.Views;
+using Xamarin.Forms.Internals;
 
 namespace QuizHelp.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private IEnumerable<Question> _questionList;
         private double _sliderValue;
         private double _maximumValue;
@@ -18,7 +23,6 @@ namespace QuizHelp.ViewModels
         private Question _currentQuestion;
         private Answer _selectedAnswer;
         private static Random _random;
-        private bool _isQuizCompleted;
 
         public Quiz QuizData { get; set; }
 
@@ -91,16 +95,6 @@ namespace QuizHelp.ViewModels
             }
         }
 
-        public bool IsQuizCompleted
-        {
-            get => _isQuizCompleted;
-            set
-            {
-                _isQuizCompleted = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public string BackgroundColor
         {
             get => _backgroundColor;
@@ -111,8 +105,10 @@ namespace QuizHelp.ViewModels
             }
         }
 
-        public HomePageViewModel()
+        public HomePageViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
+
             Title = "Home";
 
             _random = new Random();
@@ -206,7 +202,16 @@ namespace QuizHelp.ViewModels
         {
             if (!QuizData.Questions.Any())
             {
-                IsQuizCompleted = true;
+                var selectedAnswer = _answers.IndexOf(_answers.Max());
+                var result = QuizData.Results[selectedAnswer];
+
+                var parameters = new NavigationParameters
+                {
+                    {ParameterKeys.Result, result},
+                    {ParameterKeys.BackgroundColor, _colors.ElementAt(_random.Next(0, _colors.Count()))}
+                };
+
+                _navigationService.NavigateAsync(new Uri($"/{nameof(ResultPage)}", UriKind.Absolute), parameters);
                 return;
             }
 

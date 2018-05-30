@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using CarouselView.FormsPlugin.Android;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace QuizHelp.Droid
 {
@@ -16,8 +16,8 @@ namespace QuizHelp.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            CarouselViewRenderer.Init();
             Plugin.Iconize.Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+            ImageCircleRenderer.Init();
 
             LoadApplication(new App(new AndroidInitializer()));
         }
