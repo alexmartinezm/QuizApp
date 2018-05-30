@@ -9,6 +9,7 @@ using QuizHelp.Constants;
 using QuizHelp.Extensions;
 using QuizHelp.ViewModels.Base;
 using QuizHelp.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace QuizHelp.ViewModels
@@ -16,7 +17,8 @@ namespace QuizHelp.ViewModels
     public class HomePageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private IEnumerable<Question> _questionList;
+        private static int MaxValue;
+
         private double _sliderValue;
         private double _maximumValue;
         private bool _canChangeQuestion;
@@ -32,6 +34,7 @@ namespace QuizHelp.ViewModels
 
         public DelegateCommand<object> ValueChangedCommand { get; private set; }
         public DelegateCommand NewAnswerCommand { get; private set; }
+
 
         public Question CurrentQuestion
         {
@@ -79,6 +82,7 @@ namespace QuizHelp.ViewModels
             {
                 _maximumValue = value;
                 RaisePropertyChanged();
+                MaxValue = (int)_maximumValue;
             }
         }
 
@@ -135,11 +139,16 @@ namespace QuizHelp.ViewModels
             }
             else
             {
-                var newValue = Math.Round(SliderValue / 1);
-                SliderValue = newValue * 1;
+                if (Device.RuntimePlatform != Device.Android)
+                {
+                    var newValue = Math.Round(SliderValue / 1);
+                    SliderValue = newValue * 1;
+                }
+
                 CanChangeQuestion = true;
             }
 
+            //GetIndex();
             SelectedAnswer = CurrentQuestion.Answers.ElementAt((int)SliderValue);
         }
 
@@ -166,8 +175,6 @@ namespace QuizHelp.ViewModels
 
             if (QuizData == null)
                 throw new ArgumentNullException();
-
-            _questionList = QuizData.Questions.ToObservableCollection();
 
             _colors = new List<string> { "#d3ece1", "#ffdfba", "#ffffba", "#baffc9", "#cddfda" };
             BackgroundColor = _colors.First();

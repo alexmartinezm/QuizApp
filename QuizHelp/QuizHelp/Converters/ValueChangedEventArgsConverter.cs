@@ -35,7 +35,7 @@ namespace QuizHelp.Converters
         /// <param name="sliderValue">Slider value.</param>
         private bool IsSwitchedToNewAnswer(ValueChangedEventArgs eventArgs, double sliderValue)
         {
-            var newValue = Math.Abs(eventArgs.NewValue) < 0.0001;
+            var newValue = Math.Abs(eventArgs.NewValue) <= Double.Epsilon;
             return newValue && (((int)sliderValue == (int)eventArgs.OldValue) && (int)sliderValue != (int)eventArgs.NewValue);
         }
 
