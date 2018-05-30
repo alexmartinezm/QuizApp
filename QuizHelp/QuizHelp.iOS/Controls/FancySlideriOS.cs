@@ -1,6 +1,5 @@
 ﻿using CoreGraphics;
 using UIKit;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 

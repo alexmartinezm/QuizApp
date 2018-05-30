@@ -36,11 +36,12 @@
                    Margin="0, 40, 0, 0" />
 
             <controls:FancySlider Maximum="{Binding MaximumValue}"
-                              Value="{Binding SliderValue}"
-                              BarHeight="20"
-                              HeightRequest="60"
-                              VerticalOptions="StartAndExpand"
-                              HorizontalOptions="FillAndExpand">
+                                  Value="{Binding SliderValue}"
+                                  BarHeight="20"
+                                  HeightRequest="60"
+                                  VerticalOptions="StartAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  Margin="10, 5, 10, 5">
                 <controls:FancySlider.Behaviors>
                     <b:EventToCommandBehavior EventName="ValueChanged"
                                               Command="{Binding ValueChangedCommand}"
@@ -51,18 +52,24 @@
             
             <controls:CircleFrame BackgroundColor="{StaticResource ButtonColor}"
                                   IsVisible="{Binding CanChangeQuestion}"
-                                  BorderColor="Transparent">
+                                  BorderColor="Transparent"
+                                  HorizontalOptions="Center"
+                                  VerticalOptions="Center">
                 <x:Arguments>
-                    <x:Double>60</x:Double>
+                    <x:Double>70</x:Double>
                 </x:Arguments>
                 <fa1:IconButton Text="fas-angle-right"
                                 FontSize="50"
                                 TextColor="White"
                                 BackgroundColor="Transparent"
-                                HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="Center"
                                 Command="{Binding NewAnswerCommand}"
-                                CommandParameter="{Binding SliderValue}" />
+                                CommandParameter="{Binding SliderValue}">
+                    <fa1:IconButton.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Android" Value="5, 0, 0, 0" />
+                        </OnPlatform>
+                    </fa1:IconButton.Margin>
+                </fa1:IconButton>
             </controls:CircleFrame>
         </StackLayout>
         

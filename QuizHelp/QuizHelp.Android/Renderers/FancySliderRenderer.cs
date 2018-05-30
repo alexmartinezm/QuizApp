@@ -3,16 +3,18 @@ using QuizHelp.Controls;
 using QuizHelp.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Android.OS;
 
 [assembly: ExportRenderer(typeof(FancySlider), typeof(FancySliderRenderer))]
 namespace QuizHelp.Droid.Renderers
 {
     public class FancySliderRenderer : SliderRenderer
     {
-        private int _barHeight;
+        private readonly Context _context;
 
         public FancySliderRenderer(Context context) : base(context)
         {
+            _context = context;
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Slider> e)
@@ -20,8 +22,14 @@ namespace QuizHelp.Droid.Renderers
             base.OnElementChanged(e);
             if (e.OldElement != null || e.NewElement == null)
                 return;
-            var slider = (FancySlider)Element;
-            _barHeight = (int)slider.BarHeight;
+
+            var progressDrawable = _context.GetDrawable(Resource.Drawable.seekbar_custom);
+            Control.ProgressDrawable = progressDrawable;
+
+            var thumbDrawable = _context.GetDrawable(Resource.Drawable.seekbar_thumb_custom);
+            Control.SetThumb(thumbDrawable);
+
+            Control.SplitTrack = false;
         }
     }
 }
