@@ -6,24 +6,28 @@ using System.Reflection;
 using Prism.Commands;
 using QuizHelp.Extensions;
 using QuizHelp.ViewModels.Base;
-using QuizHelp.ViewModels.Interfaces;
 
 namespace QuizHelp.ViewModels
 {
-    public class HomePageViewModel : ViewModelBase, IHasSlider
+    public class HomePageViewModel : ViewModelBase
     {
         private IEnumerable<Question> _questionList;
         private double _sliderValue;
         private double _maximumValue;
-        private bool _canChangeQuesiton;
+        private bool _canChangeQuestion;
         private Question _currentQuestion;
         private Answer _selectedAnswer;
         private static Random _random;
         private bool _isQuizCompleted;
-        private readonly List<int> _generatedQuestions;
 
-        public DelegateCommand<IEnumerable<Answer>> ValueChangedCommand { get; private set; }
-        public DelegateCommand QuestionChangedCommand { get; set; }
+        public Quiz QuizData { get; set; }
+
+        private string _backgroundColor;
+        private List<string> _colors;
+        private int[] _answers;
+
+        public DelegateCommand<object> ValueChangedCommand { get; private set; }
+        public DelegateCommand NewAnswerCommand { get; private set; }
 
         public Question CurrentQuestion
         {
@@ -33,7 +37,11 @@ namespace QuizHelp.ViewModels
             {
                 _currentQuestion = value;
                 RaisePropertyChanged();
+
                 MaximumValue = _currentQuestion.Answers.Count() - 1;
+                SelectedAnswer = _currentQuestion.Answers.First();
+                CanChangeQuestion = false;
+                SliderValue = 0;
             }
         }
 
@@ -59,8 +67,6 @@ namespace QuizHelp.ViewModels
             }
         }
 
-        public double MinimumValue { get; set; }
-
         public double MaximumValue
         {
             get => _maximumValue;
@@ -74,13 +80,13 @@ namespace QuizHelp.ViewModels
 
         public int CurrentPosition { get; set; }
 
-        public bool CanChangeQuesiton
+        public bool CanChangeQuestion
         {
-            get => _canChangeQuesiton;
+            get => _canChangeQuestion;
 
             set
             {
-                _canChangeQuesiton = value;
+                _canChangeQuestion = value;
                 RaisePropertyChanged();
             }
         }
@@ -95,53 +101,59 @@ namespace QuizHelp.ViewModels
             }
         }
 
+        public string BackgroundColor
+        {
+            get => _backgroundColor;
+            set
+            {
+                _backgroundColor = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public HomePageViewModel()
         {
             Title = "Home";
 
             _random = new Random();
-            _generatedQuestions = new List<int>();
             SliderValue = 0;
-            CanChangeQuesiton = true;
+
             LoadCommands();
             LoadData();
+
+            GenerateQuestion();
         }
 
         private void LoadCommands()
         {
-            ValueChangedCommand = new DelegateCommand<IEnumerable<Answer>>(OnValueChanged, CanChangeValue);
-            QuestionChangedCommand = new DelegateCommand(OnQuestionChanged);
+            ValueChangedCommand = new DelegateCommand<object>(OnValueChanged);
+            NewAnswerCommand = new DelegateCommand(OnNewAnswer);
         }
 
-        private void OnQuestionChanged()
+        private void OnValueChanged(object oldValue)
         {
-            CurrentPosition = GenerateQuestion(_questionList);
-            if (CurrentPosition == -1)
+            if (oldValue == null)
             {
-                IsQuizCompleted = true;
+                SliderValue = 0;
+                CanChangeQuestion = false;
             }
             else
             {
-                SliderValue = 0;
-                CurrentQuestion = _questionList.ElementAt(CurrentPosition);
-                OnValueChanged(CurrentQuestion.Answers);
+                var newValue = Math.Round(SliderValue / 1);
+                SliderValue = newValue * 1;
+                CanChangeQuestion = true;
             }
+
+            SelectedAnswer = CurrentQuestion.Answers.ElementAt((int)SliderValue);
         }
 
-        private bool CanChangeValue(IEnumerable<Answer> parameter)
+        private void OnNewAnswer()
         {
-            return true;
-        }
+            SetAnswer((int)SliderValue);
+            RemoveQuestion(CurrentQuestion);
+            ChangeColors();
 
-        private void OnValueChanged(IEnumerable<Answer> parameter)
-        {
-            var newValue = Math.Round(SliderValue / 1);
-            SliderValue = newValue * 1;
-
-            if (parameter == null)
-                return;
-
-            SelectedAnswer = parameter.ElementAt((int)SliderValue);
+            GenerateQuestion();
         }
 
         private void LoadData()
@@ -154,42 +166,52 @@ namespace QuizHelp.ViewModels
                 jsonData = reader.ReadToEnd();
             }
 
-            _questionList = Quiz.FromJson(jsonData).Questions.ToObservableCollection();
+            QuizData = Quiz.FromJson(jsonData);
 
-            if (_questionList == null || !_questionList.Any())
-                return;
+            if (QuizData == null)
+                throw new ArgumentNullException();
 
-            CurrentPosition = GenerateQuestion(_questionList);
+            _questionList = QuizData.Questions.ToObservableCollection();
 
-            if (CurrentPosition == -1)
-            {
-                IsQuizCompleted = true;
-            }
-            else
-            {
-                OnValueChanged(CurrentQuestion.Answers);
-            }
+            _colors = new List<string> { "#d3ece1", "#ffdfba", "#ffffba", "#baffc9", "#cddfda" };
+            BackgroundColor = _colors.First();
         }
 
-        private int GenerateQuestion(IEnumerable<Question> questionList)
+        private void SetAnswer(int answer)
         {
-            var result = -1;
-
-            int index;
-
-            do
+            if (_answers == null || !_answers.Any())
             {
-                index = _random.Next(0, questionList.Count());
-            } while (_generatedQuestions.Contains(index) && _generatedQuestions.Count() != questionList.Count());
-            _generatedQuestions.Add(index);
+                _answers = new int[QuizData.Questions.First().Answers.Count()];
+                for (int i = 0; i < _answers.Length; i++)
+                {
+                    _answers[i] = 0;
+                }
+            }
+            _answers[answer]++;
+        }
 
-            if (index != -1)
+        private void RemoveQuestion(Question question)
+        {
+            var index = QuizData.Questions.IndexOf(question);
+            QuizData.Questions.Splice(index, 1);
+        }
+
+        private void ChangeColors()
+        {
+            _colors.Insert(0, _colors.Last());
+            BackgroundColor = _colors.First();
+        }
+
+        private void GenerateQuestion()
+        {
+            if (!QuizData.Questions.Any())
             {
-                CurrentQuestion = questionList.ElementAt(index);
-                result = index;
+                IsQuizCompleted = true;
+                return;
             }
 
-            return result;
+            var index = _random.Next(0, QuizData.Questions.Count());
+            CurrentQuestion = QuizData.Questions[index];
         }
     }
 }

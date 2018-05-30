@@ -19,6 +19,7 @@
     <Compile Remove="HomePage.cs" />
     <Compile Remove="Commands\ValueChangedCommand.cs" />
     <Compile Remove="Converters\ApplyFasStyleConverter.cs" />
+    <Compile Remove="ViewModels\Interfaces\IHasSlider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
@@ -27,7 +28,6 @@
     <Folder Include="Models\" />
     <Folder Include="Data\" />
     <Folder Include="Extensions\" />
-    <Folder Include="ViewModels\Interfaces\" />
     <Folder Include="Controls\" />
     <Folder Include="Converters\" />
   </ItemGroup>

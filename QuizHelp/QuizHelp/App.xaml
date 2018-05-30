@@ -6,10 +6,11 @@
                         x:Class="QuizHelp.App">
     
     <prism:PrismApplication.Resources>
-        <Color x:Key="PageBackgroundColor">#d3ece1</Color>
         <Color x:Key="DarkBlueColor">#4C4C4C</Color>
         <Color x:Key="ButtonColor">#009688</Color>
         <converters:BoolToNotBoolConverter x:Key="BoolToNotBoolConverter" />
+        <converters:NullToColorConverter x:Key="NullToColorConverter" />
+        <converters:ValueChangedEventArgsConverter x:Key="ValueChangedEventArgsConverter" />
     </prism:PrismApplication.Resources>
     
 </prism:PrismApplication>

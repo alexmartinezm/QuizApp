@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
 
 namespace QuizHelp
 {
-    public class Question : ModelBase<Question>
+    public class Question : ModelBase<Question>, IEquatable<Question>
     {
         private IEnumerable<Answer> _answers;
         private string _title;
@@ -43,6 +45,16 @@ namespace QuizHelp
                 _singleIcon = value;
                 RaisePropertyChanged();
             }
+        }
+
+        public bool Equals(Question other)
+        {
+            if (other == null)
+                return false;
+
+            return Title == other.Title
+                                 && SingleIcon == other.SingleIcon
+                                 && _answers.Count() == other.Answers.Count();
         }
     }
 }

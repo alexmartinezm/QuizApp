@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:controls="clr-namespace:QuizHelp.Controls"
-             xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              xmlns:fa1="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
              x:Class="QuizHelp.Views.HomePage"
-             BackgroundColor="{StaticResource PageBackgroundColor}"
+             BackgroundColor="{Binding BackgroundColor, Converter={StaticResource NullToColorConverter}}"
              Title="{Binding Title}">
     
     <StackLayout VerticalOptions="FillAndExpand"
@@ -37,20 +36,21 @@
                    Margin="0, 40, 0, 0" />
 
             <controls:FancySlider Maximum="{Binding MaximumValue}"
-                                  Minimum="{Binding MinimumValue, Mode=TwoWay}"
-                                  Value="{Binding SliderValue}"
-                                  BarHeight="20"
-                                  HeightRequest="60"
-                                  VerticalOptions="StartAndExpand"
-                                  HorizontalOptions="FillAndExpand">
+                              Value="{Binding SliderValue}"
+                              BarHeight="20"
+                              HeightRequest="60"
+                              VerticalOptions="StartAndExpand"
+                              HorizontalOptions="FillAndExpand">
                 <controls:FancySlider.Behaviors>
                     <b:EventToCommandBehavior EventName="ValueChanged"
                                               Command="{Binding ValueChangedCommand}"
-                                              CommandParameter="{Binding CurrentQuestion.Answers}"/>
+                                              EventArgsConverter="{StaticResource ValueChangedEventArgsConverter}"
+                                              EventArgsConverterParameter="{Binding SliderValue}" />
                 </controls:FancySlider.Behaviors>
             </controls:FancySlider>
-
+            
             <controls:CircleFrame BackgroundColor="{StaticResource ButtonColor}"
+                                  IsVisible="{Binding CanChangeQuestion}"
                                   BorderColor="Transparent">
                 <x:Arguments>
                     <x:Double>60</x:Double>
@@ -61,7 +61,8 @@
                                 BackgroundColor="Transparent"
                                 HorizontalOptions="CenterAndExpand"
                                 VerticalOptions="Center"
-                                Command="{Binding QuestionChangedCommand}"/>
+                                Command="{Binding NewAnswerCommand}"
+                                CommandParameter="{Binding SliderValue}" />
             </controls:CircleFrame>
         </StackLayout>
         

@@ -7,7 +7,7 @@ namespace QuizHelp.Extensions
     {
         public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> source)
         {
-            ObservableCollection<T> collection = new ObservableCollection<T>();
+            var collection = new ObservableCollection<T>();
 
             foreach (T item in source)
             {
@@ -15,6 +15,16 @@ namespace QuizHelp.Extensions
             }
 
             return collection;
+        }
+
+        public static List<T> Splice<T>(this List<T> list, int index, int count)
+        {
+            if (index == -1)
+                return null;
+
+            var range = list.GetRange(index, count);
+            list.RemoveRange(index, count);
+            return range;
         }
     }
 }
