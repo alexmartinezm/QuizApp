@@ -183,8 +183,12 @@ namespace QuizHelp.ViewModels
 
         private void ChangeColors()
         {
+            if (_colors == null || !_colors.Any())
+                return;
+
             _colors.Insert(0, _colors.Last());
             BackgroundColor = _colors.First();
+            _colors.RemoveAt(_colors.Count() - 1);
         }
 
         private void GenerateQuestion()
