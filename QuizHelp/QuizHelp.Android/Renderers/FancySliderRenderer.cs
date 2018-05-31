@@ -1,11 +1,10 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Android.Content;
-using Android.Widget;
 using QuizHelp.Controls;
 using QuizHelp.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Java.Lang;
 
 [assembly: ExportRenderer(typeof(FancySlider), typeof(FancySliderRenderer))]
 namespace QuizHelp.Droid.Renderers
@@ -32,21 +31,32 @@ namespace QuizHelp.Droid.Renderers
             Control.SetThumb(thumbDrawable);
 
             Control.Max = (int)e.NewElement.Maximum;
-            e.NewElement.ValueChanged += NewElement_ValueChanged;
-            //Control.ProgressChanged += Control_ProgressChanged;
+            Control.ProgressChanged += OnControlProgressChanged;
             Control.SplitTrack = false;
         }
 
-        void Control_ProgressChanged(object sender, SeekBar.ProgressChangedEventArgs e)
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            Control.SetValue(Slider.ValueProperty, e.Progress);
+            base.OnElementPropertyChanged(sender, e);
+
+            if (!(sender is FancySlider slider))
+                return;
+
+            if (e.PropertyName == nameof(FancySlider.Maximum))
+            {
+                Control.Max = (int)slider.Maximum;
+            }
+            else if (e.PropertyName == nameof(FancySlider.SelectedValue))
+            {
+                var args = new Android.Widget.SeekBar.ProgressChangedEventArgs(Control, slider.SelectedValue, true);
+                OnControlProgressChanged(slider, args);
+            }
         }
 
-        void NewElement_ValueChanged(object sender, ValueChangedEventArgs e)
+        void OnControlProgressChanged(object sender, Android.Widget.SeekBar.ProgressChangedEventArgs e)
         {
-            //((IElementController)Element).SetValueFromRenderer(Slider.ValueProperty, Control.Progress);
-            //Control.SetValue(Slider.ValueProperty, Control.Progress);
+            Control.Progress = Math.Round(e.Progress / 1) * 1;
+            ((FancySlider)Element).SelectedValue = Control.Progress;
         }
-
     }
 }

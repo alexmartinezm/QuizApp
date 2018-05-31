@@ -10,7 +10,6 @@
         <Color x:Key="ButtonColor">#009688</Color>
         <converters:BoolToNotBoolConverter x:Key="BoolToNotBoolConverter" />
         <converters:NullToColorConverter x:Key="NullToColorConverter" />
-        <converters:ValueChangedEventArgsConverter x:Key="ValueChangedEventArgsConverter" />
     </prism:PrismApplication.Resources>
     
 </prism:PrismApplication>

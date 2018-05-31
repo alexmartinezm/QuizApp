@@ -17,9 +17,7 @@ namespace QuizHelp.ViewModels
     public class HomePageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private static int MaxValue;
 
-        private double _sliderValue;
         private double _maximumValue;
         private bool _canChangeQuestion;
         private Question _currentQuestion;
@@ -31,9 +29,9 @@ namespace QuizHelp.ViewModels
         private string _backgroundColor;
         private List<string> _colors;
         private int[] _answers;
+        private int _selectedValueInt;
 
-        public DelegateCommand<object> ValueChangedCommand { get; private set; }
-        public DelegateCommand NewAnswerCommand { get; private set; }
+        public DelegateCommand<object> NewAnswerCommand { get; private set; }
 
 
         public Question CurrentQuestion
@@ -46,9 +44,7 @@ namespace QuizHelp.ViewModels
                 RaisePropertyChanged();
 
                 MaximumValue = _currentQuestion.Answers.Count() - 1;
-                SelectedAnswer = _currentQuestion.Answers.First();
-                CanChangeQuestion = false;
-                SliderValue = 0;
+                SelectedValueInt = 0;
             }
         }
 
@@ -63,17 +59,6 @@ namespace QuizHelp.ViewModels
             }
         }
 
-        public double SliderValue
-        {
-            get => _sliderValue;
-
-            set
-            {
-                _sliderValue = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public double MaximumValue
         {
             get => _maximumValue;
@@ -82,7 +67,6 @@ namespace QuizHelp.ViewModels
             {
                 _maximumValue = value;
                 RaisePropertyChanged();
-                MaxValue = (int)_maximumValue;
             }
         }
 
@@ -109,6 +93,26 @@ namespace QuizHelp.ViewModels
             }
         }
 
+        public int SelectedValueInt
+        {
+            get => _selectedValueInt;
+            set
+            {
+                _selectedValueInt = value;
+                RaisePropertyChanged();
+
+                if (CurrentQuestion != null)
+                {
+                    SelectedAnswer = CurrentQuestion.Answers.ElementAt(_selectedValueInt);
+                }
+            }
+        }
+
+        private bool IsSwitchedToNewAnswer(int oldValue, int newValue, int sliderValue)
+        {
+            return newValue == 0 && (sliderValue == (oldValue) && sliderValue != newValue);
+        }
+
         public HomePageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -116,45 +120,23 @@ namespace QuizHelp.ViewModels
             Title = "Home";
 
             _random = new Random();
-            SliderValue = 0;
+            SelectedValueInt = 0;
 
             LoadCommands();
             LoadData();
 
             GenerateQuestion();
+            CanChangeQuestion = true;
         }
 
         private void LoadCommands()
         {
-            ValueChangedCommand = new DelegateCommand<object>(OnValueChanged);
-            NewAnswerCommand = new DelegateCommand(OnNewAnswer);
+            NewAnswerCommand = new DelegateCommand<object>(OnNewAnswer);
         }
 
-        private void OnValueChanged(object oldValue)
+        private void OnNewAnswer(object selectedAnswer)
         {
-            if (oldValue == null)
-            {
-                SliderValue = 0;
-                CanChangeQuestion = false;
-            }
-            else
-            {
-                if (Device.RuntimePlatform != Device.Android)
-                {
-                    var newValue = Math.Round(SliderValue / 1);
-                    SliderValue = newValue * 1;
-                }
-
-                CanChangeQuestion = true;
-            }
-
-            //GetIndex();
-            SelectedAnswer = CurrentQuestion.Answers.ElementAt((int)SliderValue);
-        }
-
-        private void OnNewAnswer()
-        {
-            SetAnswer((int)SliderValue);
+            SetAnswer((int)selectedAnswer);
             RemoveQuestion(CurrentQuestion);
             ChangeColors();
 
