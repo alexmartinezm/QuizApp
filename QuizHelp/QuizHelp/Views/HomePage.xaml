@@ -57,7 +57,7 @@
                                 TextColor="White"
                                 BackgroundColor="Transparent"
                                 Command="{Binding NewAnswerCommand}"
-                                CommandParameter="{Binding SelectedValueInt}">
+                                CommandParameter="{Binding SelectedAnswer}">
                     <fa1:IconButton.Margin>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="5, 0, 0, 0" />

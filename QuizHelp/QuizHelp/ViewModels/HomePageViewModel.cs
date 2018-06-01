@@ -134,13 +134,16 @@ namespace QuizHelp.ViewModels
             NewAnswerCommand = new DelegateCommand<object>(OnNewAnswer);
         }
 
-        private void OnNewAnswer(object selectedAnswer)
+        private void OnNewAnswer(object answer)
         {
-            SetAnswer((int)selectedAnswer);
-            RemoveQuestion(CurrentQuestion);
-            ChangeColors();
+            if (answer != null && answer is Answer selectedAnswer)
+            {
+                SetAnswer(selectedAnswer);
+                RemoveQuestion(CurrentQuestion);
+                ChangeColors();
 
-            GenerateQuestion();
+                GenerateQuestion();
+            }
         }
 
         private void LoadData()
@@ -162,7 +165,7 @@ namespace QuizHelp.ViewModels
             BackgroundColor = _colors.First();
         }
 
-        private void SetAnswer(int answer)
+        private void SetAnswer(Answer answer)
         {
             if (_answers == null || !_answers.Any())
             {
@@ -172,7 +175,7 @@ namespace QuizHelp.ViewModels
                     _answers[i] = 0;
                 }
             }
-            _answers[answer]++;
+            _answers[answer.Result]++;
         }
 
         private void RemoveQuestion(Question question)

@@ -4,12 +4,12 @@ namespace QuizHelp
 {
     public class Answer : ModelBase<Answer>
     {
-        private double _result;
+        private int _result;
         private string _title;
         private string _image;
 
         [JsonProperty("result")]
-        public double Result
+        public int Result
         {
             get => _result;
 
