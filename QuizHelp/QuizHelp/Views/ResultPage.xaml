@@ -8,8 +8,8 @@
     <StackLayout VerticalOptions="CenterAndExpand">
         <controls:CircleImage Source="{Binding Result.Image}"
                               Aspect="AspectFit"
-                              WidthRequest="140"
-                              HeightRequest="140"
+                              WidthRequest="180"
+                              HeightRequest="180"
                               HorizontalOptions="Center" />
         
         <Label Text="{Binding Result.Title}"

@@ -4,15 +4,24 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:controls="clr-namespace:QuizHelp.Controls"
              xmlns:fa1="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
              x:Class="QuizHelp.Views.HomePage"
              BackgroundColor="{Binding BackgroundColor, Converter={StaticResource NullToColorConverter}}"
              Title="{Binding Title}">
     
-    <StackLayout VerticalOptions="FillAndExpand"
+    <ContentPage.Resources>
+        <xamanimation:StoryBoard x:Key="StoryBoard"
+                             Target="{x:Reference QuestionLayout}">
+            <xamanimation:FadeInAnimation Direction="Up" Duration="1000" />
+        </xamanimation:StoryBoard>
+    </ContentPage.Resources>
+    
+    <StackLayout x:Name="QuestionLayout"
+                 VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"
                  Margin="10"
                  Spacing="0">
-
+        
         <StackLayout>
             <Label Text="{Binding CurrentQuestion.Title}"
                FontSize="Large"
@@ -58,11 +67,19 @@
                                 BackgroundColor="Transparent"
                                 Command="{Binding NewAnswerCommand}"
                                 CommandParameter="{Binding SelectedAnswer}">
+                    
+                    <fa1:IconButton.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <xamanimation:BeginAnimation Animation="{StaticResource StoryBoard}" />
+                        </EventTrigger>
+                    </fa1:IconButton.Triggers>
+                    
                     <fa1:IconButton.Margin>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="5, 0, 0, 0" />
                         </OnPlatform>
                     </fa1:IconButton.Margin>
+                    
                 </fa1:IconButton>
             </controls:CircleFrame>
         </StackLayout>

@@ -96,7 +96,7 @@ namespace QuizHelp.Controls
                 });
             }
 
-            var roundedFrame = new CircleFrame(140)
+            var roundedFrame = new CircleFrame(160)
             {
                 Content = _rootStack
             };
