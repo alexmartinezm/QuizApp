@@ -29,16 +29,16 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>QuizHelp</string>
+	<string>Tech Help</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.amartinez.QuizHelp</string>
+	<string>com.amartinez.TechHelp</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleName</key>
-	<string>QuizHelp</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleName</key>
+	<string>TechHelp</string>
 </dict>
 </plist>
