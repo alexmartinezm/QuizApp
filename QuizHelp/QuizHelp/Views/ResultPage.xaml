@@ -6,10 +6,9 @@
     
     <StackLayout VerticalOptions="CenterAndExpand">
         <Image Source="{Binding Result.Image}"
-               Aspect="AspectFill"
-               WidthRequest="200"
-               HeightRequest="200"
-               FillColor="White"
+               Aspect="AspectFit"
+               WidthRequest="180"
+               HeightRequest="180"
                HorizontalOptions="Center" />
         
         <Label Text="{Binding Result.Title}"

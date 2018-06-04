@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using ImageCircle.Forms.Plugin.Droid;
 
 namespace QuizHelp.Droid
 {
@@ -17,7 +16,6 @@ namespace QuizHelp.Droid
 
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Plugin.Iconize.Iconize.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
-            ImageCircleRenderer.Init();
 
             LoadApplication(new App(new AndroidInitializer()));
         }
