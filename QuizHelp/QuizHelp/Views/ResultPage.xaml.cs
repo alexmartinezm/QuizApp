@@ -1,5 +1,6 @@
 ﻿
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace QuizHelp.Views
 {
@@ -8,6 +9,8 @@ namespace QuizHelp.Views
         public ResultPage()
         {
             InitializeComponent();
+
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
     }
 }
