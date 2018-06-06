@@ -4,7 +4,8 @@
              x:Class="QuizHelp.Views.ResultPage"
              BackgroundColor="{Binding BackgroundColor, Converter={StaticResource NullToColorConverter}}">
     
-    <StackLayout VerticalOptions="CenterAndExpand">
+    <StackLayout VerticalOptions="CenterAndExpand"
+                 Margin="10">
         <Image Source="{Binding Result.Image}"
                Aspect="AspectFit"
                WidthRequest="180"

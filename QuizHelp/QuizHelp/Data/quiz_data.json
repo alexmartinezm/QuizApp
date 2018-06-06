@@ -160,22 +160,22 @@
   "results": [
     {
       "title": "Progressive Web App",
-      "description": "Lorem ipsum dolor sit amet",
+      "description": "A web app that uses modern web capabilities to deliver an app-like experience to users.",
       "image": "https://cdn-images-1.medium.com/max/1000/1*U01ubQ9TrE1Zow5pkGHTfw.png"
     },
     {
       "title": "Framework de JS",
-      "description": "Lorem ipsum dolor sit amet",
+      "description": "Hybrid Mobile Applications using web technologies such as HTML, CSS and JavaScript.",
       "image": "https://ionicacademy.com/wp-content/uploads/2017/06/ionic-logo-portrait.png"
     },
     {
       "title": "Solución nativa multiplataforma",
-      "description": "Lorem ipsum dolor sit amet",
+      "description": "Xamarin tools use C#-code to write native apps (Android, IOS, and Windows) with native user interfaces and share code across multiple platforms.",
       "image": "https://cdn.freebiesupply.com/logos/large/2x/xamarin-logo-png-transparent.png"
     },
     {
       "title": "Solución nativa",
-      "description": "Lorem ipsum dolor sit amet",
+      "description": "Coded in a specific programming language, such as Objective C for iOS or Java for Android operating systems.",
       "image": "https://bhzof35755.i.lithium.com/t5/image/serverpage/image-id/2890iCF5CC30599FDE5D0/image-size/original?v=mpbl-1&px=-1"
     }
   ]
