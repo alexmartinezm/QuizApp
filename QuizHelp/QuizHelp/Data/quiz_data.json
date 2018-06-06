@@ -1,54 +1,54 @@
 ﻿{
   "questions": [
     {
-      "title": "¿De qué presupuesto disponéis?",
+      "title": "¿Cómo es el presupuesto para el proyecto?",
       "singleIcon": false,
       "answers": [
         {
           "title": "El mínimo posible",
-          "image": "fas-euro-sign",
+          "image": "euro-sign",
           "result": 0
         },
         {
-          "title": "Bajo",
-          "image": "fas-euro-sign",
+          "title": "Ajustado",
+          "image": "euro-sign",
           "result": 1
         },
         {
-          "title": "Medio",
-          "image": "fas-euro-sign",
+          "title": "Ampliable si el proyecto es interesante",
+          "image": "euro-sign",
           "result": 2
         },
         {
           "title": "Alto",
-          "image": "fas-euro-sign",
+          "image": "euro-sign",
           "result": 3
         }
       ]
     },
     {
-      "title": "¿De cuánto tiempo de desarrollo disponéis?",
+      "title": "Time-to-market: ¿Cuánto tiempo disponeis para el desarrollo?",
       "singleIcon": false,
       "answers": [
         {
-          "title": "Más de seis meses",
-          "image": "fas-exclamation",
-          "result": 3
-        },
-        {
-          "title": "Seis meses",
-          "image": "fas-exclamation",
-          "result": 2
+          "title": "Queremos un prototipo lo antes posible",
+          "image": "exclamation",
+          "result": 0
         },
         {
           "title": "Un par de meses",
-          "image": "fas-exclamation",
+          "image": "exclamation",
           "result": 1
         },
         {
-          "title": "Queremos un prototipo lo antes posible",
-          "image": "fas-exclamation",
-          "result": 0
+          "title": "Entre tres y cuatro meses",
+          "image": "exclamation",
+          "result": 2
+        },
+        {
+          "title": "Seis meses o más para escalar",
+          "image": "exclamation",
+          "result": 3
         }
       ]
     },
@@ -58,22 +58,22 @@
       "answers": [
         {
           "title": "Diariamente",
-          "image": "fas-stopwatch",
+          "image": "stopwatch",
           "result": 2
         },
         {
           "title": "Una vez por semana",
-          "image": "fas-clock",
+          "image": "clock",
           "result": 1
         },
         {
           "title": "Consultas esporádicas",
-          "image": "fas-calendar-alt",
+          "image": "calendar-alt",
           "result": 1
         },
         {
-          "title": "Sólo en situaciones concretas",
-          "image": "fas-calendar",
+          "title": "Una vez o sólo en situaciones concretas",
+          "image": "calendar",
           "result": 0
         }
       ]
@@ -83,23 +83,23 @@
       "singleIcon": true,
       "answers": [
         {
-          "title": "Sólo desde moviles IOS y Android",
-          "image": "fas-mobile",
+          "title": "Sólo desde móviles iOS y Android",
+          "image": "mobile",
           "result": 2
         },
         {
           "title": "Tal vez en algún momento del desarrollo",
-          "image": "fas-tablet-alt",
+          "image": "tablet-alt",
           "result": 1
         },
         {
-          "title": "Si, pero quiero que tengan funcionalidades distintas",
-          "image": "fas-laptop",
+          "title": "Sí, pero quiero que tengan funcionalidades distintas",
+          "image": "laptop",
           "result": 1
         },
         {
-          "title": "Si y quiero que sean iguales",
-          "image": "fas-desktop",
+          "title": "Sí y quiero que sean iguales",
+          "image": "desktop",
           "result": 0
         }
       ]
@@ -110,22 +110,22 @@
       "answers": [
         {
           "title": "No, sólo quiero mostrar y recibir información",
-          "image": "fas-bars",
+          "image": "bars",
           "result": 0
         },
         {
           "title": "Quiero geolocalización y/o usar la cámara",
-          "image": "fas-camera",
+          "image": "camera",
           "result": 1
         },
         {
           "title": "Quiero poder leer/enviar SMS y leer los contactos",
-          "image": "fas-envelope",
+          "image": "envelope",
           "result": 2
         },
         {
           "title": "Usará bluetooth y se comunicará con otras apps",
-          "image": "fas-signal",
+          "image": "signal",
           "result": 3
         }
       ]
@@ -136,22 +136,22 @@
       "answers": [
         {
           "title": "Quiero una app lo más parecida a una app normal",
-          "image": "fas-paint-brush",
+          "image": "paint-brush",
           "result": 2
         },
         {
           "title": "Quiero que sea bonita, pero sin sacrificar usabilidad",
-          "image": "fas-paint-brush",
+          "image": "paint-brush",
           "result": 1
         },
         {
           "title": "Quiero algo distinto a las demás apps",
-          "image": "fas-paint-brush",
+          "image": "paint-brush",
           "result": 0
         },
         {
           "title": "Quiero un diseño 100% customizable e innovador",
-          "image": "fas-paint-brush",
+          "image": "paint-brush",
           "result": 0
         }
       ]

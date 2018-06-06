@@ -87,7 +87,7 @@ namespace QuizHelp.Controls
             {
                 _rootStack.Children.Add(new IconLabel
                 {
-                    Text = answers.ElementAt(i).Image,
+                    Text = $"fas-{answers.ElementAt(i).Image}",
                     FontSize = 36,
                     TextColor = Color.FromHex("#233144"),
                     HorizontalOptions = LayoutOptions.Center,
