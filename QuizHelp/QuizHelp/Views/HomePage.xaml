@@ -25,7 +25,7 @@
         
             <StackLayout>
                 <Label Text="{Binding CurrentQuestion.Title}"
-                   FontSize="Large"
+                   FontSize="36"
                    TextColor="{StaticResource DarkBlueColor}"
                    FontAttributes="Bold"
                    HorizontalOptions="CenterAndExpand"
@@ -38,7 +38,7 @@
 
                 <Label Text="{Binding SelectedAnswer.Title}"
                        TextColor="{StaticResource DarkBlueColor}"
-                       FontSize="Medium"
+                       FontSize="Large"
                        HorizontalOptions="CenterAndExpand"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"

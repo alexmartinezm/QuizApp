@@ -52,6 +52,8 @@ namespace QuizHelp.Controls
                     {
                         _rootStack.Children.ElementAt(i).IsVisible = false;
                     }
+
+                    _rootStack.Children.ElementAt(i).Margin = new Thickness(2, 0, 0, 0);
                 }
             }
         }
@@ -89,7 +91,7 @@ namespace QuizHelp.Controls
                 {
                     Text = $"fas-{answers.ElementAt(i).Image}",
                     FontSize = 36,
-                    TextColor = Color.FromHex("#233144"),
+                    TextColor = Color.FromHex("#79838f"),
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center,
                     IsVisible = i == 0
