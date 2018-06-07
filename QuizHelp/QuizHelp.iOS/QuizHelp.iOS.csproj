@@ -141,6 +141,18 @@
     <BundleResource Include="Resources\iconize-fontawesome-brands.otf" />
     <BundleResource Include="Resources\iconize-fontawesome-regular.otf" />
     <BundleResource Include="Resources\iconize-fontawesome-solid.otf" />
+    <BundleResource Include="Resources\native.png" />
+    <BundleResource Include="Resources\native%402x.png" />
+    <BundleResource Include="Resources\native%403x.png" />
+    <BundleResource Include="Resources\pwa.png" />
+    <BundleResource Include="Resources\pwa%402x.png" />
+    <BundleResource Include="Resources\pwa%403x.png" />
+    <BundleResource Include="Resources\reactnative.png" />
+    <BundleResource Include="Resources\reactnative%402x.png" />
+    <BundleResource Include="Resources\reactnative%403x.png" />
+    <BundleResource Include="Resources\xamarin.png" />
+    <BundleResource Include="Resources\xamarin%402x.png" />
+    <BundleResource Include="Resources\xamarin%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />

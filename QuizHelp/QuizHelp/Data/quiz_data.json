@@ -126,7 +126,7 @@
         {
           "title": "Y también bluetooth y se comunicará con otras apps",
           "image": "signal",
-          "points": 15
+          "points": 25
         }
       ]
     },
@@ -161,22 +161,22 @@
     {
       "title": "Progressive Web App",
       "description": "Quieres una app rápida de desarrollar, y fácil de encontrar para los clientes. No te importa sacrificar un poco de rendimiento, ni posibles problemas de escalabilidad en un futuro.",
-      "image": "https://cdn-images-1.medium.com/max/1000/1*U01ubQ9TrE1Zow5pkGHTfw.png"
+      "image": "pwa.png"
     },
     {
       "title": "Framework de JS",
       "description": "Quieres una app que tenga un aspecto nativo y que sea rápida de desarrollar. Tienes previsto crear una versión web en un futuro.",
-      "image": "https://filestore.hasura.io/v1/file/7723c234-4263-4599-9568-9d6788138c5b"
+      "image": "reactnative.png"
     },
     {
       "title": "Solución nativa multiplataforma",
       "description": "Quieres una app con un rendimiento casi nativo y un coste de mantenimiento bajo. Necesitas acceder a funciones propias del teléfono.",
-      "image": "https://cdn.freebiesupply.com/logos/large/2x/xamarin-logo-png-transparent.png"
+      "image": "xamarin.png"
     },
     {
       "title": "Solución nativa",
       "description": "Quieres una app 100% nativa y que sea ligera, aunque el coste de mantenimiento sea alto.",
-      "image": "https://bhzof35755.i.lithium.com/t5/image/serverpage/image-id/2890iCF5CC30599FDE5D0/image-size/original?v=mpbl-1&px=-1"
+      "image": "native.png"
     }
   ]
 }

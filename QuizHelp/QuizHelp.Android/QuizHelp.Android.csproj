@@ -98,6 +98,26 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\native.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\pwa.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\reactnative.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\xamarin.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\native.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\pwa.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\reactnative.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\xamarin.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\native.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\pwa.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\reactnative.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\xamarin.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\native.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\pwa.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\reactnative.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\xamarin.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\native.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\pwa.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\reactnative.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\xamarin.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

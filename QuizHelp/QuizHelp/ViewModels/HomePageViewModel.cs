@@ -206,19 +206,19 @@ namespace QuizHelp.ViewModels
 
             Result result = null;
 
-            if (score >= 0 && score <= 15)
+            if (score <= 15)
             {
                 result = QuizData.Results.First();
             }
-            else if (score >= 16 && score <= 30)
+            else if (score <= 30)
             {
                 result = QuizData.Results.ElementAt(1);
             }
-            else if (score >= 31 && score <= 45)
+            else if (score <= 45)
             {
                 result = QuizData.Results.ElementAt(2);
             }
-            else if (score >= 46)
+            else
             {
                 result = QuizData.Results.ElementAt(3);
             }
