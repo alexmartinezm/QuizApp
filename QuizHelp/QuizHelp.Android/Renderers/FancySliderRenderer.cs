@@ -24,11 +24,14 @@ namespace QuizHelp.Droid.Renderers
             if (e.OldElement != null || e.NewElement == null)
                 return;
 
+            var thumbDrawable = _context.GetDrawable(Resource.Drawable.seekbar_thumb_custom);
+            Control.SetThumb(thumbDrawable);
+
             var progressDrawable = _context.GetDrawable(Resource.Drawable.seekbar_custom);
             Control.ProgressDrawable = progressDrawable;
 
-            var thumbDrawable = _context.GetDrawable(Resource.Drawable.seekbar_thumb_custom);
-            Control.SetThumb(thumbDrawable);
+            // HACK to avoid thumb's split
+            Control.SetPadding(90, 0, 90, 0);
 
             Control.Max = (int)e.NewElement.Maximum;
             Control.ProgressChanged += OnControlProgressChanged;

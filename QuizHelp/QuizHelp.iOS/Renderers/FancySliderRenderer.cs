@@ -5,6 +5,7 @@ using QuizHelp.iOS.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using QuizHelp.iOS.Controls;
+using CoreGraphics;
 
 [assembly: ExportRenderer(typeof(FancySlider), typeof(FancySliderRenderer))]
 namespace QuizHelp.iOS.Renderers
@@ -19,6 +20,8 @@ namespace QuizHelp.iOS.Renderers
                 customSlider.ValueChanged += OnControlValueChanged;
 
                 SetNativeControl(customSlider);
+
+                customSlider.Transform = CGAffineTransform.MakeScale(1.8f, 1.8f);
 
                 base.OnElementChanged(e);
             }
