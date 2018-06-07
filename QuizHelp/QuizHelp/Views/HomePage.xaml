@@ -16,74 +16,76 @@
         </xamanimation:StoryBoard>
     </ContentPage.Resources>
     
-    <StackLayout x:Name="QuestionLayout"
+    <ScrollView>
+        <StackLayout x:Name="QuestionLayout"
                  VerticalOptions="FillAndExpand"
                  HorizontalOptions="FillAndExpand"
                  Margin="10"
                  Spacing="0">
         
-        <StackLayout>
-            <Label Text="{Binding CurrentQuestion.Title}"
-               FontSize="Large"
-               TextColor="{StaticResource DarkBlueColor}"
-               FontAttributes="Bold"
-               HorizontalOptions="CenterAndExpand"
-               HorizontalTextAlignment="Center"
-               Margin="5, 40, 5, 40"/>
-
-            <controls:DynamicLabel AnswersList="{Binding CurrentQuestion.Answers}"
-                                   SelectedAnswer="{Binding SelectedValueInt}"
-                                   SingleIcon="{Binding CurrentQuestion.SingleIcon}" />
-
-            <Label Text="{Binding SelectedAnswer.Title}"
+            <StackLayout>
+                <Label Text="{Binding CurrentQuestion.Title}"
+                   FontSize="Large"
                    TextColor="{StaticResource DarkBlueColor}"
-                   FontSize="Medium"
+                   FontAttributes="Bold"
                    HorizontalOptions="CenterAndExpand"
-                   VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"
-                   VerticalOptions="CenterAndExpand"
-                   Margin="0, 40, 0, 0" />
+                   Margin="5, 40, 5, 40"/>
 
-            <controls:FancySlider Maximum="{Binding MaximumValue}"
-                                  SelectedValue="{Binding SelectedValueInt}"
-                                  Value="0"
-                                  BarHeight="20"
-                                  HeightRequest="60"
-                                  VerticalOptions="StartAndExpand"
-                                  HorizontalOptions="FillAndExpand"
-                                  Margin="10, 5, 10, 5" />
+                <controls:DynamicLabel AnswersList="{Binding CurrentQuestion.Answers}"
+                                       SelectedAnswer="{Binding SelectedValueInt}"
+                                       SingleIcon="{Binding CurrentQuestion.SingleIcon}" />
+
+                <Label Text="{Binding SelectedAnswer.Title}"
+                       TextColor="{StaticResource DarkBlueColor}"
+                       FontSize="Medium"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="0, 40, 0, 0" />
+
+                <controls:FancySlider Maximum="{Binding MaximumValue}"
+                                      SelectedValue="{Binding SelectedValueInt}"
+                                      Value="0"
+                                      BarHeight="20"
+                                      HeightRequest="60"
+                                      VerticalOptions="StartAndExpand"
+                                      HorizontalOptions="FillAndExpand"
+                                      Margin="10, 5, 10, 5" />
+                
+                <controls:CircleFrame BackgroundColor="{StaticResource ButtonColor}"
+                                      IsVisible="{Binding CanChangeQuestion}"
+                                      BorderColor="Transparent"
+                                      HorizontalOptions="Center"
+                                      VerticalOptions="Center">
+                    <x:Arguments>
+                        <x:Double>70</x:Double>
+                    </x:Arguments>
+                    <fa1:IconButton Text="fas-angle-right"
+                                    FontSize="50"
+                                    TextColor="White"
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding NewAnswerCommand}"
+                                    CommandParameter="{Binding SelectedAnswer}">
+                        
+                        <fa1:IconButton.Triggers>
+                            <EventTrigger Event="Clicked">
+                                <xamanimation:BeginAnimation Animation="{StaticResource StoryBoard}" />
+                            </EventTrigger>
+                        </fa1:IconButton.Triggers>
+                        
+                        <fa1:IconButton.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Android" Value="5, 0, 0, 0" />
+                            </OnPlatform>
+                        </fa1:IconButton.Margin>
+                        
+                    </fa1:IconButton>
+                </controls:CircleFrame>
+            </StackLayout>
             
-            <controls:CircleFrame BackgroundColor="{StaticResource ButtonColor}"
-                                  IsVisible="{Binding CanChangeQuestion}"
-                                  BorderColor="Transparent"
-                                  HorizontalOptions="Center"
-                                  VerticalOptions="Center">
-                <x:Arguments>
-                    <x:Double>70</x:Double>
-                </x:Arguments>
-                <fa1:IconButton Text="fas-angle-right"
-                                FontSize="50"
-                                TextColor="White"
-                                BackgroundColor="Transparent"
-                                Command="{Binding NewAnswerCommand}"
-                                CommandParameter="{Binding SelectedAnswer}">
-                    
-                    <fa1:IconButton.Triggers>
-                        <EventTrigger Event="Clicked">
-                            <xamanimation:BeginAnimation Animation="{StaticResource StoryBoard}" />
-                        </EventTrigger>
-                    </fa1:IconButton.Triggers>
-                    
-                    <fa1:IconButton.Margin>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android" Value="5, 0, 0, 0" />
-                        </OnPlatform>
-                    </fa1:IconButton.Margin>
-                    
-                </fa1:IconButton>
-            </controls:CircleFrame>
         </StackLayout>
-        
-    </StackLayout>
+    </ScrollView>
     
 </ContentPage>

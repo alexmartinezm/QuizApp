@@ -4,21 +4,9 @@ namespace QuizHelp
 {
     public class Answer : ModelBase<Answer>
     {
-        private int _result;
         private string _title;
         private string _image;
-
-        [JsonProperty("result")]
-        public int Result
-        {
-            get => _result;
-
-            set
-            {
-                _result = value;
-                RaisePropertyChanged();
-            }
-        }
+        private int _points;
 
         [JsonProperty("title")]
         public string Title
@@ -40,6 +28,17 @@ namespace QuizHelp
             set
             {
                 _image = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        [JsonProperty("points")]
+        public int Points
+        {
+            get => _points;
+            set
+            {
+                _points = value;
                 RaisePropertyChanged();
             }
         }

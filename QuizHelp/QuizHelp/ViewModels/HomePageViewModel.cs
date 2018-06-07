@@ -17,22 +17,20 @@ namespace QuizHelp.ViewModels
     public class HomePageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private static Random _random;
 
         private double _maximumValue;
         private bool _canChangeQuestion;
         private Question _currentQuestion;
         private Answer _selectedAnswer;
-        private static Random _random;
+        private string _backgroundColor;
+        private List<string> _colors;
+        private int _score;
+        private int _selectedValueInt;
 
         public Quiz QuizData { get; set; }
 
-        private string _backgroundColor;
-        private List<string> _colors;
-        private int[] _answers;
-        private int _selectedValueInt;
-
         public DelegateCommand<object> NewAnswerCommand { get; private set; }
-
 
         public Question CurrentQuestion
         {
@@ -108,11 +106,6 @@ namespace QuizHelp.ViewModels
             }
         }
 
-        private bool IsSwitchedToNewAnswer(int oldValue, int newValue, int sliderValue)
-        {
-            return newValue == 0 && (sliderValue == (oldValue) && sliderValue != newValue);
-        }
-
         public HomePageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -167,15 +160,7 @@ namespace QuizHelp.ViewModels
 
         private void SetAnswer(Answer answer)
         {
-            if (_answers == null || !_answers.Any())
-            {
-                _answers = new int[QuizData.Questions.First().Answers.Count()];
-                for (int i = 0; i < _answers.Length; i++)
-                {
-                    _answers[i] = 0;
-                }
-            }
-            _answers[answer.Result]++;
+            _score += answer.Points;
         }
 
         private void RemoveQuestion(Question question)
@@ -198,8 +183,7 @@ namespace QuizHelp.ViewModels
         {
             if (!QuizData.Questions.Any())
             {
-                var selectedAnswer = _answers.IndexOf(_answers.Max());
-                var result = QuizData.Results[selectedAnswer];
+                var result = GetResult(_score);
 
                 var parameters = new NavigationParameters
                 {
@@ -213,6 +197,33 @@ namespace QuizHelp.ViewModels
 
             var index = _random.Next(0, QuizData.Questions.Count());
             CurrentQuestion = QuizData.Questions[index];
+        }
+
+        private Result GetResult(int score)
+        {
+            if (QuizData?.Results == null || !QuizData.Results.Any())
+                return null;
+
+            Result result = null;
+
+            if (score >= 0 && score <= 15)
+            {
+                result = QuizData.Results.First();
+            }
+            else if (score >= 16 && score <= 30)
+            {
+                result = QuizData.Results.ElementAt(1);
+            }
+            else if (score >= 31 && score <= 45)
+            {
+                result = QuizData.Results.ElementAt(2);
+            }
+            else if (score >= 46)
+            {
+                result = QuizData.Results.ElementAt(3);
+            }
+
+            return result;
         }
     }
 }
