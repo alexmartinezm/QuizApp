@@ -22,7 +22,7 @@
         {
           "title": "Alto",
           "image": "euro-sign",
-          "points": 6
+          "points": 10
         }
       ]
     },
@@ -59,7 +59,7 @@
         {
           "title": "Diariamente",
           "image": "stopwatch",
-          "points": 6
+          "points": 4
         },
         {
           "title": "Una vez por semana",
@@ -126,7 +126,7 @@
         {
           "title": "Y también bluetooth y se comunicará con otras apps",
           "image": "signal",
-          "points": 25
+          "points": 20
         }
       ]
     },
