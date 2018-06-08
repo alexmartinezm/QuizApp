@@ -30,7 +30,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.amartinez.TechHelp</string>
 	<key>CFBundleVersion</key>
-	<string>1.10</string>
+	<string>1.11</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
@@ -38,6 +38,6 @@
 	<key>CFBundleName</key>
 	<string>TechHelp</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.21</string>
 </dict>
 </plist>
