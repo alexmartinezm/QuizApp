@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.23" package="com.amartinez.TechHelp" android:versionCode="6">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.24" package="com.amartinez.TechHelp" android:versionCode="7">
     <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
     <application android:label="TechHelp" android:icon="@mipmap/ic_launcher">
     </application>
